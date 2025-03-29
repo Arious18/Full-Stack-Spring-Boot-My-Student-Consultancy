@@ -1,0 +1,205 @@
+/* Base container */
+.af-container {
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+/* Header section */
+.af-form-header {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.af-main-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Form container */
+.af-form-container {
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 1.5rem;
+    position: relative;
+    width: 60%;
+    max-width: 1200px; /* Optional: cap the max-width for larger screens */
+    margin: 0 auto;
+}
+
+.af-form-container:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Form elements */
+.af-form-group {
+    margin-bottom: 1rem;
+}
+
+.af-form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.af-form-input,
+.af-form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #eee;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+    color: #333;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.af-form-input:focus,
+.af-form-select:focus {
+    outline: none;
+    border-color: #4f46e5;
+}
+
+/* Button group */
+.af-button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.af-submit-btn,
+.af-cancel-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    color: white;
+}
+
+.af-submit-btn {
+    background-color: #4f46e5;
+}
+
+.af-submit-btn:hover {
+    background-color: #4338ca;
+}
+
+.af-cancel-btn {
+    background-color: #666;
+}
+
+.af-cancel-btn:hover {
+    background-color: #555;
+}
+
+/* Error and success messages */
+.af-error,
+.af-success {
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+.af-error {
+    background-color: #fef2f2;
+    color: #ef4444;
+}
+
+.af-success {
+    background-color: #f0fdf4;
+    color: #15803d;
+}
+
+/* Loading overlay */
+.af-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 0.75rem;
+}
+
+/* Dark mode support */
+.dark .af-container {
+    background-color: #1f2937; /* Matches cg-cards-list-container */
+}
+
+.dark .af-main-title {
+    color: #f3f4f6; /* Matches cg-main-title */
+}
+
+.dark .af-form-container {
+    background-color: #1f2937; /* Matches cg-card */
+}
+
+.dark .af-form-label {
+    color: #6366f1; /* Matches cg-price-value for consistency */
+}
+
+.dark .af-form-input,
+.dark .af-form-select {
+    background-color: #374151; /* Darker input background */
+    color: #f3f4f6; /* Light text */
+    border-color: #4b5563; /* Subtle border */
+}
+
+.dark .af-form-input:focus,
+.dark .af-form-select:focus {
+    border-color: #6366f1; /* Matches cg-price-value */
+}
+
+.dark .af-submit-btn {
+    background-color: #6366f1; /* Matches cg-learn-more-btn */
+}
+
+.dark .af-submit-btn:hover {
+    background-color: #4f46e5; /* Matches cg-learn-more-btn:hover */
+}
+
+.dark .af-cancel-btn {
+    background-color: #6b7280; /* Slightly lighter gray for contrast */
+}
+
+.dark .af-cancel-btn:hover {
+    background-color: #4b5563; /* Darker on hover */
+}
+
+.dark .af-error {
+    background-color: #dc2626; /* Darker red for error */
+    color: #f3f4f6; /* Light text */
+}
+
+.dark .af-success {
+    background-color: #16a34a; /* Darker green for success */
+    color: #f3f4f6; /* Light text */
+}
+
+.dark .af-loading-overlay {
+    color: #f3f4f6; /* Light text for visibility */
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+    .af-container {
+        padding: 0 2rem;
+    }
+}

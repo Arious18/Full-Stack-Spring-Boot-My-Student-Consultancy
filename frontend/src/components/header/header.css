@@ -1,0 +1,476 @@
+/* Base styles */
+.head-header {
+    background-color: #ffffff; /* Changed from white */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.head-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: visible;
+
+}
+
+
+.head-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.head-logo {
+    display: flex;
+    gap: 15px; /* Added fixed spacing between logo and text */
+}
+
+.head-logo-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0; /* Prevents the icon from shrinking */
+}
+
+.head-logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    white-space: nowrap; /* Prevents the text from wrapping */
+}
+
+/* Navigation */
+.head-nav-links {
+    display: none;
+    gap: 2rem;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.head-nav-link {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.head-nav-link:hover {
+    color: #4f46e5;
+}
+/* Add these styles to your existing header.css file */
+
+/* Updated Search Bar */
+.head-search-container {
+    display: none;
+    align-items: center;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    overflow: hidden;
+    transition: all 0.3s;
+    width: 250px;
+    border: 1px solid transparent;
+}
+
+.head-search-container:focus-within {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+.head-search-icon {
+    color: #9ca3af;
+    flex-shrink: 0;
+}
+
+.head-search-input {
+    border: none;
+    background: transparent;
+    margin-left: 0.5rem;
+    width: 100%;
+    color: #666;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.head-search-button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.3rem;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: none;
+}
+
+.head-search-button:hover {
+    background-color: #4338ca;
+}
+
+/* Show search button on focus or when content exists */
+.head-search-container:focus-within .head-search-button,
+.head-search-input:not(:placeholder-shown) + .head-search-button {
+    display: block;
+}
+
+/* Dark mode search styles */
+.dark .head-search-container {
+    background-color: #374151;
+}
+
+.dark .head-search-input {
+    color: #d1d5db;
+}
+
+.dark .head-search-container:focus-within {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+.dark .head-search-button {
+    background-color: #6366f1;
+}
+
+.dark .head-search-button:hover {
+    background-color: #4f46e5;
+}
+
+/* Make sure search is visible on mobile */
+@media (max-width: 767px) {
+    .head-search-container {
+        display: flex;
+        width: 100%;
+        max-width: 250px;
+        margin: 0.5rem 0;
+        order: 3;
+    }
+
+    .head-header-content {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .head-icon-group {
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .head-search-container {
+        display: flex;
+        width: 250px;
+    }
+
+    .head-search-container:focus-within {
+        width: 300px;
+    }
+}
+
+/* Icons */
+.head-icon-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.head-icon-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.head-icon-btn:hover {
+    color: #4f46e5;
+}
+
+/* Auth buttons */
+.head-auth-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.head-signin-btn {
+    background: none;
+    border: 2px solid #4f46e5;
+    color: #4f46e5;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.head-signin-btn:hover {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.head-signup-btn {
+    background-color: #4f46e5;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.head-signup-btn:hover {
+    background-color: #4338ca;
+}
+
+/* Dark mode */
+.dark .head-header {
+    background-color: #1f2937;
+}
+
+.dark .head-logo-text {
+    color: white;
+}
+
+.dark .head-logo-icon {
+    color: #6366f1;
+}
+
+.dark .head-nav-link {
+    color: #d1d5db;
+}
+
+.dark .head-nav-link:hover {
+    color: #6366f1;
+}
+
+.dark .head-search-container {
+    background-color: #374151;
+}
+
+.dark .head-search-input {
+    color: #d1d5db;
+}
+
+.dark .head-icon-btn {
+    color: #d1d5db;
+}
+
+.dark .head-icon-btn:hover {
+    color: #6366f1;
+}
+
+.dark .head-signin-btn {
+    border-color: #6366f1;
+    color: #6366f1;
+}
+
+.dark .head-signin-btn:hover {
+    background-color: #6366f1;
+}
+
+.dark .head-signup-btn {
+    background-color: #6366f1;
+}
+
+.dark .head-signup-btn:hover {
+    background-color: #4f46e5;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .head-nav-links {
+        display: flex;
+    }
+
+    .head-search-container {
+        display: flex;
+    }
+
+    .head-auth-buttons {
+        margin-left: 0;
+    }
+}
+
+/* Fix for mobile to ensure logo has proper spacing */
+@media (max-width: 767px) {
+    .head-logo {
+        margin-right: auto;
+        padding-right: 15px;
+    }
+}
+.head-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.head-username {
+    color: #333;
+    font-size: 14px;
+}
+
+.head-logout-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.head-logout-btn:hover {
+    color: #000;
+}
+
+/* Dark mode adjustments */
+.dark .head-username {
+    color: #fff;
+}
+
+.dark .head-logout-btn {
+    color: #ccc;
+}
+
+.dark .head-logout-btn:hover {
+    color: #fff;
+}
+/* Add these styles to your existing header.css file */
+
+.head-user-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.head-username {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.head-user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    width: 150px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.head-user-menu-item {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.head-user-menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+.head-user-menu-item:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
+/* Dark mode styles */
+.dark .head-user-menu {
+    background-color: #333;
+}
+
+.dark .head-user-menu-item {
+    color: #fff;
+}
+
+.dark .head-user-menu-item:hover {
+    background-color: #444;
+}
+
+.dark .head-user-menu-item:not(:last-child) {
+    border-bottom: 1px solid #444;
+
+
+
+}
+
+
+.head-language-dropdown {
+    position: relative; /* Keep this as the reference point */
+    display: flex;
+    align-items: center;
+}
+
+.head-language-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Use fixed positioning to escape all clipping */
+.head-language-menu-container {
+    position: fixed; /* Changed from absolute to fixed */
+
+    top: 60px; /* Adjust this value based on your header height */
+    right: 300px; /* Adjust this based on your layout */
+    margin-top: 0; /* Remove margin-top since we're using fixed positioning */
+    z-index: 1000; /* High enough to appear above everything */
+}
+
+/* The actual menu */
+.head-language-menu {
+    width: 150px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+}
+
+.head-language-menu-item {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+/* Rest of your existing styles for hover and dark mode remain the same */
+
+.head-language-menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+.head-language-menu-item:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Dark mode styles */
+.dark .head-language-menu {
+    background-color: #2c2c2c;
+    border-color: #444;
+    color: white;
+}
+
+.dark .head-language-menu-item {
+    color: white;
+}
+
+.dark .head-language-menu-item:hover {
+    background-color: #3c3c3c;
+}
+
+.dark .head-language-menu-item:not(:last-child) {
+    border-bottom: 1px solid #444;
+}

@@ -1,0 +1,123 @@
+/* Base container */
+div.mainHero-container {
+    position: relative;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Background Image */
+.mainHero-background-image {
+    position: absolute;
+    inset: 0;
+    background-image: url('../../assets/view-3d-book-with-student.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    z-index: -1;
+    filter: brightness(0.8);
+}
+
+/* Content styling */
+.mainHero-content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 24px;
+    width: 100%;
+}
+
+.mainHero-text {
+    max-width: 800px;
+    flex: 1;
+    padding-right: 40px;
+}
+
+/* Logo Container */
+.mainHero-logo-container {
+    max-width: 250px;
+    flex: 0 0 auto;
+    padding: 0 24px;
+}
+
+.mainHero-logo {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Title and Subtitle styling */
+.mainHero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 24px;
+    animation: fadeIn 1s ease-out;
+}
+
+.mainHero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.75;
+    animation: fadeIn 1s ease-out 0.5s;
+}
+
+/* Dark mode adjustments */
+.dark .mainHero-background-image {
+    filter: brightness(0.6);
+}
+
+.dark .mainHero-title {
+    color: white;
+}
+
+.dark .mainHero-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mainHero-container {
+        min-height: 600px;
+        padding: 24px 0;
+    }
+
+    .mainHero-content {
+        flex-direction: column;
+        padding: 0 24px;
+        text-align: center;
+    }
+
+    .mainHero-text {
+        padding-right: 0;
+        margin-bottom: 24px;
+    }
+
+    .mainHero-logo-container {
+        padding: 0;
+    }
+
+    .mainHero-title {
+        font-size: 2.5rem;
+    }
+
+    .mainHero-subtitle {
+        font-size: 1.125rem;
+    }
+}

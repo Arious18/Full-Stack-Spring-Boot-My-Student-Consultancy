@@ -1,0 +1,144 @@
+.lcr-logo-carousel {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 2rem 0;
+}
+
+/* Add fade masks */
+.lcr-logo-carousel::before,
+.lcr-logo-carousel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.lcr-logo-carousel::before {
+    left: 0;
+    background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0) 100%);
+}
+
+.lcr-logo-carousel::after {
+    right: 0;
+    background: linear-gradient(270deg, #fff 0%, rgba(255,255,255,0) 100%);
+}
+
+.lcr-logo-track {
+    display: flex;
+    animation: scroll 40s linear infinite;
+    position: relative;
+    z-index: 1;
+}
+
+.lcr-logo-item {
+    flex: 0 0 16.666%; /* 6 items visible */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.lcr-logo-wrapper {
+    border-radius: 50%;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #eee;
+    transition: transform 0.3s;
+}
+
+.lcr-logo-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.lcr-logo-title {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Hover effects */
+.lcr-logo-carousel:hover .lcr-logo-track {
+    animation-play-state: paused;
+}
+
+.lcr-logo-item:hover .lcr-logo-wrapper {
+    transform: scale(1.1);
+    border-color: #4f46e5;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lcr-logo-item {
+        flex: 0 0 25%; /* 4 items visible */
+    }
+
+    .lcr-logo-image {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lcr-logo-item {
+        flex: 0 0 33.333%; /* 3 items visible */
+    }
+}
+
+/* Dark Mode Styles */
+.dark .lcr-logo-carousel {
+    background-color: #1a202c;
+}
+
+.dark .lcr-logo-carousel::before {
+    background: linear-gradient(90deg, #1a202c 0%, rgba(26,32,44,0) 100%);
+}
+
+.dark .lcr-logo-carousel::after {
+    background: linear-gradient(270deg, #1a202c 0%, rgba(26,32,44,0) 100%);
+}
+
+.dark .lcr-logo-item {
+    color: #e2e8f0;
+}
+
+.dark .lcr-logo-wrapper {
+    background: #2d3748;
+    border-color: #4a5568;
+}
+
+.dark .lcr-logo-wrapper:hover {
+    border-color: #e2e8f0;
+}
+
+.dark .lcr-logo-title {
+    color: #e2e8f0;
+}
+
+/* Dark Mode Hover Effects */
+.dark .lcr-logo-item:hover .lcr-logo-wrapper {
+    transform: scale(1.1);
+    border-color: #4f46e5;
+}
+
+.dark .lcr-logo-carousel:hover .lcr-logo-track {
+    animation-play-state: paused;
+}
