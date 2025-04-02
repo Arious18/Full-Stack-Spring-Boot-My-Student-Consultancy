@@ -219,7 +219,7 @@ const AdminCounties = () => {
     const fetchCountries = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get("http://localhost:8080/countries");
+            const response = await axios.get("https://deneme5-g63n.onrender.com/countries");
             setCountries(response.data);
             setError(null);
         } catch (error) {
@@ -252,7 +252,7 @@ const AdminCounties = () => {
             }
 
             const response = await axios.put(
-                `http://localhost:8080/countries/${editCountry.id}`,
+                `https://deneme5-g63n.onrender.com/countries/${editCountry.id}`,
                 formData,
                 {
                     headers: {
@@ -296,7 +296,7 @@ const AdminCounties = () => {
             }
 
             const response = await axios.post(
-                "http://localhost:8080/countries",
+                "https://deneme5-g63n.onrender.com/countries",
                 formData,
                 {
                     headers: {
@@ -326,7 +326,7 @@ const AdminCounties = () => {
         if (window.confirm("Are you sure you want to delete this country?")) {
             setIsLoading(true);
             try {
-                await axios.delete(`http://localhost:8080/countries/${id}`);
+                await axios.delete(`https://deneme5-g63n.onrender.com/countries/${id}`);
                 setCountries(countries.filter((c) => c.id !== id));
                 setError(null);
             } catch (error) {

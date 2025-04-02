@@ -15,7 +15,7 @@ function UniversityDetail() {
         const fetchUniversity = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`http://localhost:8080/universities/${id}`);
+                const response = await fetch(`https://deneme5-g63n.onrender.com/universities/${id}`);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch university: ${response.status}`);
                 }

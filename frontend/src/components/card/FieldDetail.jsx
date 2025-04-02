@@ -13,7 +13,7 @@ function FieldDetail() {
         const fetchField = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`http://localhost:8080/fields/${id}`);
+                const response = await fetch(`https://deneme5-g63n.onrender.com/fields/${id}`);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch field: ${response.status}`);
                 }

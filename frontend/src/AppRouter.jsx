@@ -40,6 +40,7 @@ import Universities from "./components/card/UniversitiesGrid"
 import UniversityDetail from "./components/card/UniversityDetail.jsx";
 import FacultyDetail from "./components/card/FacultyDetail.jsx";
 import FieldDetail from "./components/card/FieldDetail.jsx";
+import UniversityList from "./components/lists/UniveresityList.jsx";
 const AppRouter = () => {
     return (
         <AuthProvider>
@@ -54,7 +55,7 @@ const AppRouter = () => {
 
 
                 {/* List Views */}
-                <Route path="/university" element={<University />} />
+                <Route path="/university" element={<UniversityList />} />
                 <Route path="/faculties/:universityId" element={<Faculties />} />
                 <Route path="/fields/:facultyId" element={<Fields />} />
 

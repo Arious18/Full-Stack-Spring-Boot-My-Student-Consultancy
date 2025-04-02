@@ -46,7 +46,7 @@ const ApplicationForm = () => {
         const fetchUniversities = async () => {
             try {
                 setError(null);
-                const response = await axios.get("http://localhost:8080/universities");
+                const response = await axios.get("https://deneme5-g63n.onrender.com/universities");
                 setUniversities(response.data);
             } catch (err) {
                 console.error("Error fetching universities:", err);
@@ -63,7 +63,7 @@ const ApplicationForm = () => {
                 try {
                     setError(null);
                     const response = await axios.get(
-                        `http://localhost:8080/faculties/university/${formData.chosenUniversity}`
+                        `https://deneme5-g63n.onrender.com/faculties/university/${formData.chosenUniversity}`
                     );
                     if (Array.isArray(response.data)) {
                         setFaculties(response.data);
@@ -94,7 +94,7 @@ const ApplicationForm = () => {
                     setError(null);
                     setIsFieldsLoading(true);
                     const response = await axios.get(
-                        `http://localhost:8080/fields/faculty/${formData.chosenFaculty}`,
+                        `https://deneme5-g63n.onrender.com/fields/faculty/${formData.chosenFaculty}`,
                         { timeout: 10000 }
                     );
 
@@ -193,7 +193,7 @@ const ApplicationForm = () => {
 
             if (file) formDataToSend.append("file", file);
 
-            const response = await axios.post("http://localhost:8080/applications", formDataToSend, {
+            const response = await axios.post("https://deneme5-g63n.onrender.com/applications", formDataToSend, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 

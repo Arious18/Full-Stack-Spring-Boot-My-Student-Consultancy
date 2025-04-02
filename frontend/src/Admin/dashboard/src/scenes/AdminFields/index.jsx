@@ -214,12 +214,12 @@ const AdminFields = () => {
     const fetchData = async () => {
         setIsLoading(true);
         try {
-            const facultiesResponse = await axios.get("http://localhost:8080/faculties");
+            const facultiesResponse = await axios.get("https://deneme5-g63n.onrender.com/faculties");
             let fieldsResponse;
             if (selectedFacultyId) {
-                fieldsResponse = await axios.get(`http://localhost:8080/fields/faculty/${selectedFacultyId}`);
+                fieldsResponse = await axios.get(`https://deneme5-g63n.onrender.com/fields/faculty/${selectedFacultyId}`);
             } else {
-                fieldsResponse = await axios.get("http://localhost:8080/fields");
+                fieldsResponse = await axios.get("https://deneme5-g63n.onrender.com/fields");
             }
             setFields(fieldsResponse.data);
             setFaculties(facultiesResponse.data);
@@ -264,7 +264,7 @@ const AdminFields = () => {
             }
 
             const response = await axios.put(
-                `http://localhost:8080/fields/${formField.id}`,
+                `https://deneme5-g63n.onrender.com/fields/${formField.id}`,
                 formData,
                 {headers: {"Content-Type": "multipart/form-data"}}
             );
@@ -314,7 +314,7 @@ const AdminFields = () => {
             }
 
             const response = await axios.post(
-                "http://localhost:8080/fields",
+                "https://deneme5-g63n.onrender.com/fields",
                 formData,
                 {headers: {"Content-Type": "multipart/form-data"}}
             );
@@ -343,7 +343,7 @@ const AdminFields = () => {
         if (window.confirm("Are you sure you want to delete this field?")) {
             setIsLoading(true);
             try {
-                await axios.delete(`http://localhost:8080/fields/${id}`);
+                await axios.delete(`https://deneme5-g63n.onrender.com/fields/${id}`);
                 setFields(fields.filter((f) => f.id !== id));
                 setError(null);
             } catch (error) {

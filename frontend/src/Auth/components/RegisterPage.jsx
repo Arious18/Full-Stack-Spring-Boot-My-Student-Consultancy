@@ -26,7 +26,7 @@ export const RegisterPage = () => {
         };
         console.log('Register payload:', payload);
         try {
-            const response = await axios.post('http://localhost:8080/auth/register', payload, {
+            const response = await axios.post('https://deneme5-g63n.onrender.com/auth/register', payload, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });

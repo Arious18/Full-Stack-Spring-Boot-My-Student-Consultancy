@@ -1,5 +1,5 @@
 
-const API_BASE_URL = 'http://localhost:8080'; // Change this to your API base URL
+const API_BASE_URL = 'https://deneme5-g63n.onrender.com'; // Change this to your API base URL
 
 class SearchService {
     async searchAll(query) {

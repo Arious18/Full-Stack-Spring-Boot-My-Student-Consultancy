@@ -83,12 +83,12 @@ const AdminFaculties = () => {
     const fetchData = async () => {
         setIsLoading(true);
         try {
-            const universitiesResponse = await axios.get("http://localhost:8080/universities");
+            const universitiesResponse = await axios.get("https://deneme5-g63n.onrender.com/universities");
             let facultiesResponse;
             if (selectedUniversityId) {
-                facultiesResponse = await axios.get(`http://localhost:8080/faculties/university/${selectedUniversityId}`);
+                facultiesResponse = await axios.get(`https://deneme5-g63n.onrender.com/faculties/university/${selectedUniversityId}`);
             } else {
-                facultiesResponse = await axios.get("http://localhost:8080/faculties");
+                facultiesResponse = await axios.get("https://deneme5-g63n.onrender.com/faculties");
             }
             setFaculties(facultiesResponse.data);
             setUniversities(universitiesResponse.data);
@@ -133,7 +133,7 @@ const AdminFaculties = () => {
             }
 
             const response = await axios.put(
-                `http://localhost:8080/faculties/${formFaculty.id}`,
+                `https://deneme5-g63n.onrender.com/faculties/${formFaculty.id}`,
                 formData,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
@@ -183,7 +183,7 @@ const AdminFaculties = () => {
             }
 
             const response = await axios.post(
-                "http://localhost:8080/faculties",
+                "https://deneme5-g63n.onrender.com/faculties",
                 formData,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
@@ -212,7 +212,7 @@ const AdminFaculties = () => {
         if (window.confirm("Are you sure you want to delete this faculty?")) {
             setIsLoading(true);
             try {
-                await axios.delete(`http://localhost:8080/faculties/${id}`);
+                await axios.delete(`https://deneme5-g63n.onrender.com/faculties/${id}`);
                 setFaculties(faculties.filter((f) => f.id !== id));
                 setError(null);
             } catch (error) {

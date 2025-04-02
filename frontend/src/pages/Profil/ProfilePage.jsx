@@ -50,7 +50,7 @@ const ProfilePage = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.put(`http://localhost:8080/auth/${user.id}`, editData, {
+            const response = await axios.put(`https://deneme5-g63n.onrender.com/auth/${user.id}`, editData, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`,
                     'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ const ProfilePage = () => {
 
     const fetchUserProfile = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/auth/${user.id}`, {
+            const response = await axios.get(`https://deneme5-g63n.onrender.com/auth/${user.id}`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }

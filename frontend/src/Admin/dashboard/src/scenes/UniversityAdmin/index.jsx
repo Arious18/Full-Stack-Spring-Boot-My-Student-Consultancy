@@ -297,7 +297,7 @@ const AdminUniversities = () => {
     const fetchUniversities = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get("http://localhost:8080/universities");
+            const response = await axios.get("https://deneme5-g63n.onrender.com/universities");
             setUniversities(response.data);
             setTotalCount(response.data.length);
             setError(null);
@@ -333,7 +333,7 @@ const AdminUniversities = () => {
             }
 
             const response = await axios.put(
-                `http://localhost:8080/universities/${editUniversity.id}`,
+                `https://deneme5-g63n.onrender.com/universities/${editUniversity.id}`,
                 formData,
                 {
                     headers: {
@@ -383,7 +383,7 @@ const AdminUniversities = () => {
             }
 
             const response = await axios.post(
-                "http://localhost:8080/universities",
+                "https://deneme5-g63n.onrender.com/universities",
                 formData,
                 {
                     headers: {
@@ -416,7 +416,7 @@ const AdminUniversities = () => {
         if (window.confirm("Are you sure you want to delete this university?")) {
             setIsLoading(true);
             try {
-                await axios.delete(`http://localhost:8080/universities/${id}`);
+                await axios.delete(`https://deneme5-g63n.onrender.com/universities/${id}`);
                 setUniversities(universities.filter((u) => u.id !== id));
                 setError(null);
             } catch (error) {
@@ -476,7 +476,7 @@ const AdminUniversities = () => {
 // Fetch Countries
     const fetchCountries = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/countries");
+            const response = await axios.get("https://deneme5-g63n.onrender.com/countries");
             setCountries(response.data);
         } catch (error) {
             console.error("Error fetching countries:", error);

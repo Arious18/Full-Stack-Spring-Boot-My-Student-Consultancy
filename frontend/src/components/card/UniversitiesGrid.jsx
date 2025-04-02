@@ -7,7 +7,7 @@ function UniversitiesGrid() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const baseUrl = 'http://localhost:8080';
+    const baseUrl = 'https://deneme5-g63n.onrender.com';
 
     useEffect(() => {
         fetchUniversities();

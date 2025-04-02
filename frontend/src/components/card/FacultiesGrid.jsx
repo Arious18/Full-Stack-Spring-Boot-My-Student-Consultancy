@@ -18,7 +18,7 @@ function FacultiesGrid() {
                 setLoading(true);
 
                 // Fetch universities for name lookup
-                const universitiesResponse = await fetch('http://localhost:8080/universities');
+                const universitiesResponse = await fetch('https://deneme5-g63n.onrender.com/universities');
                 if (!universitiesResponse.ok) {
                     throw new Error(`Failed to fetch universities: ${universitiesResponse.status}`);
                 }
@@ -27,8 +27,8 @@ function FacultiesGrid() {
 
                 // Fetch faculties (either all or for a specific university)
                 let facultiesUrl = universityId
-                    ? `http://localhost:8080/faculties/university/${universityId}`
-                    : 'http://localhost:8080/faculties';
+                    ? `https://deneme5-g63n.onrender.com/faculties/university/${universityId}`
+                    : 'https://deneme5-g63n.onrender.com/faculties';
                 console.log('Fetching faculties from:', facultiesUrl);
                 const facultiesResponse = await fetch(facultiesUrl);
                 if (!facultiesResponse.ok) {

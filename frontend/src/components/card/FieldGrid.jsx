@@ -18,7 +18,7 @@ function FieldsGrid() {
                 setLoading(true);
 
                 // Fetch faculties for name lookup
-                const facultiesResponse = await fetch('http://localhost:8080/faculties');
+                const facultiesResponse = await fetch('https://deneme5-g63n.onrender.com/faculties');
                 if (!facultiesResponse.ok) {
                     throw new Error(`Failed to fetch faculties: ${facultiesResponse.status}`);
                 }
@@ -27,8 +27,8 @@ function FieldsGrid() {
 
                 // Fetch fields (either all or for a specific faculty)
                 let fieldsUrl = facultyId
-                    ? `http://localhost:8080/fields/faculty/${facultyId}`
-                    : 'http://localhost:8080/fields';
+                    ? `https://deneme5-g63n.onrender.com/fields/faculty/${facultyId}`
+                    : 'https://deneme5-g63n.onrender.com/fields';
                 console.log('Fetching fields from:', fieldsUrl);
                 const fieldsResponse = await fetch(fieldsUrl);
                 if (!fieldsResponse.ok) {

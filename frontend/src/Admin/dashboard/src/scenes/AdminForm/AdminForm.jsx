@@ -52,10 +52,10 @@ const AdminForm = () => {
         setIsLoading(true);
         try {
             const [appsResponse, unisResponse, facsResponse, fieldsResponse] = await Promise.all([
-                axios.get("http://localhost:8080/applications"),
-                axios.get("http://localhost:8080/universities"),
-                axios.get("http://localhost:8080/faculties"),
-                axios.get("http://localhost:8080/fields"),
+                axios.get("https://deneme5-g63n.onrender.com/applications"),
+                axios.get("https://deneme5-g63n.onrender.com/universities"),
+                axios.get("https://deneme5-g63n.onrender.com/faculties"),
+                axios.get("https://deneme5-g63n.onrender.com/fields"),
             ]);
 
             setApplications(appsResponse.data);
@@ -83,7 +83,7 @@ const AdminForm = () => {
         setIsLoading(true);
         try {
             const response = await axios.put(
-                `http://localhost:8080/applications/${selectedApplication.id}`,
+                `https://deneme5-g63n.onrender.com/applications/${selectedApplication.id}`,
                 selectedApplication,
                 { headers: { "Content-Type": "application/json" } }
             );
@@ -106,7 +106,7 @@ const AdminForm = () => {
         if (window.confirm("Are you sure you want to delete this application?")) {
             setIsLoading(true);
             try {
-                await axios.delete(`http://localhost:8080/applications/${id}`);
+                await axios.delete(`https://deneme5-g63n.onrender.com/applications/${id}`);
                 setApplications(applications.filter((app) => app.id !== id));
                 setError(null);
             } catch (error) {

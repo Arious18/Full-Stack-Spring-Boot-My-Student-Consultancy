@@ -24,7 +24,7 @@ export const LoginPage = () => {
         };
         console.log('Login payload:', payload);
         try {
-            const response = await axios.post('http://localhost:8080/auth/login', payload, {
+            const response = await axios.post('https://deneme5-g63n.onrender.com/auth/login', payload, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });
