@@ -746,7 +746,3 @@ For questions, support, or collaboration, reach out to:
 
 
 ---
-
-<p align="center">
-  Made with ❤️ by TMTALYP Team
-</p>
