@@ -18,7 +18,7 @@ public class StorageService {
 
     private final S3Client s3Client;
     private final String bucketName = "my-data";
-    private final String baseUrl = "https://pub-cab830fe342c4f9480be11e8b3347409.r2.dev/";
+    private final String baseUrl = "Yoiur cloudflare key";
 
     @Autowired
     public StorageService(S3Client s3Client) {
