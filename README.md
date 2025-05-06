@@ -716,7 +716,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-- [Azat Vepakulyyev ](https://github.com/your-username) - Developer
+- [Azat Vepakulyyev ](https://Arious18) - Developer
 
 
 ## 🙏 Acknowledgements
@@ -735,13 +735,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For questions, support, or collaboration, reach out to:
 
-- Blog Website: [My Blog]([https://your-project-website.com](https://blog.azatvepakulyyev.workers.dev/))
+- Blog Website: [My Blog](https://blog.azatvepakulyyev.workers.dev/)
 - Email: azatvepakulyyev@gmail.com
 
 ---
 
 <p align="center">
-  Made with ❤️ by TMTALYP Team
+  Made with ❤️ by Azat Vepakulyyev  
 </p>
 
 
