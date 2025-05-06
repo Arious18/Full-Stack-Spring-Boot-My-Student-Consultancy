@@ -716,7 +716,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-- [Azat Vepakulyyev ](https://Arious18](https://github.com/Arious18)) - Developer
+- [Azat Vepakulyyev ](https://github.com/Arious18) - Developer
 
 
 ## 🙏 Acknowledgements
