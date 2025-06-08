@@ -99,7 +99,6 @@ This portal serves as a centralized hub for international education opportunitie
 ![News Portal](/pictures/11.png)
 
 
-![Universities Grid](/pictures/13.png)
 
 
 ![Hero Management](/pictures/3.png)
