@@ -28,7 +28,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/job-applications")
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174", "https://frontend.azatvepakulyyev.workers.dev", "https://tmtalyp.azatvepakulyyev.workers.dev"},
+@CrossOrigin(origins = {"http://localhost:5173"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @Tag(name = "Job Applications", description = "Job application management API")
