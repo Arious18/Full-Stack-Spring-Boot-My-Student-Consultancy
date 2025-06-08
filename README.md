@@ -86,28 +86,28 @@ This portal serves as a centralized hub for international education opportunitie
 ### Admin Dashboard Overview
 ![Admin Dashboard](/pictures/5.png)
 
-### User Management System
+
 ![User Management](/pictures/8.png)
 
-### Job Portal Interface
+
 ![Job Portal](/pictures/6.png)
 
-### Job Detail View
+
 ![Job Details](/pictures/10.png)
 
-### News Section
+
 ![News Portal](/pictures/11.png)
 
-### University Listings
+
 ![Universities Grid](/pictures/13.png)
 
-### Hero Management Interface
+
 ![Hero Management](/pictures/3.png)
 
-### Login Interface
+
 ![Login Page](/pictures/12.png)
 
-### Search Functionality
+
 ![Search Interface](/pictures/5.png)
 
 ## 🛠️ Technology Stack
