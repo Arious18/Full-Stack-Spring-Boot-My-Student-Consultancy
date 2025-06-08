@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/api/dashboard")
-@CrossOrigin(origins = {"http://localhost:5173", "https://frontend.azatvepakulyyev.workers.dev", "http://localhost:5174"})
+@CrossOrigin(origins = {"http://localhost:5173"})
 public class DashboardController {
 
     private final UserRepository userRepository;
