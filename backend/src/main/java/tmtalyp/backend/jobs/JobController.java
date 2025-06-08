@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/jobs") // Changed from "/jobs" to "/api/jobs"
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174", "https://frontend.azatvepakulyyev.workers.dev", "https://tmtalyp.azatvepakulyyev.workers.dev"},
+@RequestMapping("/api/jobs") 
+@CrossOrigin(origins = {"http://localhost:5173"},
         allowedHeaders = "*",
         methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @Tag(name = "Jobs Management", description = "Comprehensive job posting and management API")
