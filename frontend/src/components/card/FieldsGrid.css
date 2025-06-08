@@ -1,225 +1,347 @@
-/* Base container */
-.fld-cards-list-container {
+/* Base container - removed padding to eliminate white lines */
+.FiGr-cards-list-container {
     width: 100%;
-    margin-bottom: 0;
-    padding: 0 1rem;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Header section */
-.fld-cards-header {
-    padding-top: 10px;
-    padding-left: 10px;
+/* Header section - adjusted padding */
+.FiGr-cards-header {
+    padding: 20px 15px 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
-.fld-header-content {
+.FiGr-header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.fld-main-title {
-    font-size: 2rem;
+.FiGr-main-title {
+    font-size: clamp(1.5rem, 5vw, 2rem);
     font-weight: 700;
     color: #333;
 }
 
-.fld-see-more-btn {
+.FiGr-see-more-btn {
     background-color: #4f46e5;
     color: white;
     padding: 0.5rem 1.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0.9rem;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    white-space: nowrap;
 }
 
-.fld-see-more-btn:hover {
+.FiGr-see-more-btn:hover {
     background-color: #4338ca;
 }
 
-/* Component section */
-.fld-component-container {
-    padding: 1rem 0;
+/* Component section - adjusted padding */
+.FiGr-component-container {
+    padding: 1rem 15px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-.fld-section-title {
-    font-size: 1.5rem;
+.FiGr-section-title {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
     font-weight: 600;
     margin-bottom: 1.5rem;
     color: #333;
 }
 
-/* Grid layout */
-.fld-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 2rem;
-}
-
-/* Card styling */
-.fld-card {
-    border-radius: 0.75rem;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: white;
-}
-
-.fld-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-.fld-card-image-container {
-    height: 200px;
-    overflow: hidden;
-}
-
-.fld-card-image {
+/* Grid layout - Single column */
+.FiGr-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
 }
 
-.fld-card:hover .fld-card-image {
-    transform: scale(1.05);
-}
-
-.fld-card-content {
+/* Card styling - updated to match the design */
+.FiGr-card {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    border-radius: 0.5rem;
     padding: 1.5rem;
+    transition: box-shadow 0.3s;
+    border-left: 5px solid #0066b2;
+    box-sizing: border-box;
 }
 
-.fld-card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #333;
+.FiGr-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.fld-card-faculty {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #4f46e5; /* Matches button color for emphasis */
-    margin-bottom: 0.5rem;
+/* Card content layout */
+.FiGr-card-content {
+    padding: 0;
+    width: 100%;
 }
 
-.fld-card-description {
-    color: #666;
+.FiGr-card-title {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    font-weight: 700;
+    color: #0066b2;
     margin-bottom: 1rem;
-    line-height: 1.5;
+    word-wrap: break-word;
 }
 
-.fld-card-price {
+/* Info items layout */
+.FiGr-info-items {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid #eee;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
-.fld-price-label {
+.FiGr-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: fit-content;
+}
+
+.FiGr-info-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.FiGr-info-label {
     color: #666;
+    font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
-.fld-price-value {
-    font-weight: 600;
-    color: #4f46e5;
+/* Price and button section */
+.FiGr-action-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.fld-learn-more-btn {
-    width: 100%;
-    background-color: #4f46e5;
+.FiGr-price-display {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    font-weight: 700;
+    color: #16a34a; /* Green color for price */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.FiGr-original-price {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: #999;
+    text-decoration: line-through;
+}
+
+.FiGr-apply-btn {
+    background-color: #0066b2;
     color: white;
-    padding: 0.75rem 0;
+    padding: 0.75rem 2rem;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-weight: 600;
     cursor: pointer;
+    text-transform: uppercase;
     transition: background-color 0.3s;
-    font-weight: 500;
+    white-space: nowrap;
 }
 
-.fld-learn-more-btn:hover {
-    background-color: #4338ca;
+.FiGr-apply-btn:hover {
+    background-color: #005299;
+}
+
+/* Remove old styles */
+.FiGr-card-image-container,
+.FiGr-card-image,
+.FiGr-card-faculty,
+.FiGr-card-description,
+.FiGr-card-price,
+.FiGr-price-label,
+.FiGr-price-value,
+.FiGr-learn-more-btn {
+    display: none;
 }
 
 /* Loading, error, and no results states */
-.fld-loading,
-.fld-error,
-.fld-no-results {
+.FiGr-loading,
+.FiGr-error,
+.FiGr-no-results {
     text-align: center;
     padding: 3rem 0;
     color: #666;
+    width: 100%;
 }
 
-.fld-error {
+.FiGr-error {
     color: #ef4444;
 }
 
 /* Dark mode support */
-.dark .fld-main-title,
-.dark .fld-section-title {
+.dark .FiGr-main-title,
+.dark .FiGr-section-title {
     color: #f3f4f6;
 }
 
-.dark .fld-card {
+.dark .FiGr-card {
+    background-color: #1f2937;
+    border-left-color: #3b82f6;
+}
+
+.dark .FiGr-cards-list-container {
     background-color: #1f2937;
 }
 
-.dark .fld-cards-list-container {
-    background-color: #1f2937;
+.dark .FiGr-card-title {
+    color: #3b82f6;
 }
 
-.dark .fld-card-title {
-    color: #f3f4f6;
+.dark .FiGr-info-label {
+    color: #9ca3af;
 }
 
-.dark .fld-card-faculty {
-    color: #6366f1;
+.dark .FiGr-price-display {
+    color: #10b981;
 }
 
-.dark .fld-card-description {
-    color: #d1d5db;
+.dark .FiGr-apply-btn {
+    background-color: #3b82f6;
 }
 
-.dark .fld-price-label {
-    color: #d1d5db;
+.dark .FiGr-apply-btn:hover {
+    background-color: #2563eb;
 }
 
-.dark .fld-price-value {
-    color: #6366f1;
-}
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .FiGr-cards-list-container {
+        padding: 0;
+    }
 
-.dark .fld-see-more-btn,
-.dark .fld-learn-more-btn {
-    background-color: #6366f1;
-}
+    .FiGr-cards-header {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 1rem;
+    }
 
-.dark .fld-see-more-btn:hover,
-.dark .fld-learn-more-btn:hover {
-    background-color: #4f46e5;
-}
+    .FiGr-card {
+        width: 100%;
+        margin: 0;
+    }
 
-/* Responsive grid adjustments */
-@media (min-width: 640px) {
-    .fld-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .FiGr-info-items {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .FiGr-action-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .FiGr-apply-btn {
+        width: 100%;
+        text-align: center;
     }
 }
 
-@media (min-width: 768px) {
-    .fld-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
+@media screen and (max-width: 480px) {
+    .FiGr-cards-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .FiGr-header-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .FiGr-see-more-btn {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .FiGr-card {
+        padding: 1rem;
+        border-left-width: 3px;
+    }
+
+    .FiGr-apply-btn {
+        padding: 0.75rem 1rem;
+    }
+
+    .FiGr-price-display {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 
-@media (min-width: 1024px) {
-    .fld-cards-grid {
-        grid-template-columns: repeat(4, 1fr);
+@media screen and (max-width: 320px) {
+    .FiGr-cards-list-container {
+        padding: 0;
     }
+
+    .FiGr-card {
+        padding: 0.75rem;
+    }
+}
+
+/* Touch-friendly adjustments */
+@media (hover: none) and (pointer: coarse) {
+    .FiGr-apply-btn,
+    .FiGr-see-more-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Ensure no horizontal scrolling or white space */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Full width container */
+.FiGr-cards-list-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* Box sizing for all elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Ensure proper viewport scaling */
+html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }

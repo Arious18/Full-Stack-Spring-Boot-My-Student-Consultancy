@@ -9,11 +9,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import tmtalyp.backend.Auth.Jwt.JwtUtil;
 
+import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = {"http://localhost:5173", "https://frontend.azatvepakulyyev.workers.dev", "http://localhost:5174"})
 public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
     private final UserService userService;
@@ -47,11 +48,28 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody User user) {
         logger.info("Register request received: email={}, name={}", user.getEmail(), user.getName());
         try {
-            user.getRoles().add("USER");
+            // Check if user already exists
+            if (userService.findByEmail(user.getEmail()).isPresent()) {
+                return ResponseEntity.badRequest().body("Email already exists");
+            }
+
+            // Ensure roles are initialized
+            if (user.getRoles() == null) {
+                user.setRoles(new HashSet<>());
+            }
+
+            // Add USER role if no roles are set
+            if (user.getRoles().isEmpty()) {
+                user.getRoles().add("USER");
+            }
+
+            // Register user (UserService handles password encoding)
             User savedUser = userService.registerUser(user);
+
             String token = jwtUtil.generateToken(savedUser.getEmail());
             AuthResponse response = new AuthResponse(token, savedUser.getId(),
                     savedUser.getName(), savedUser.getEmail(), "user", savedUser.getRoles(), "/dashboard");
+
             logger.info("User registered successfully: {}", savedUser.getEmail());
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
@@ -63,38 +81,57 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         logger.info("Login attempt for email: {}", loginRequest.getEmail());
-        Optional<User> userOpt = userService.findByEmail(loginRequest.getEmail());
+        try {
+            Optional<User> userOpt = userService.findByEmail(loginRequest.getEmail());
 
-        if (userOpt.isPresent()) {
-            User user = userOpt.get();
-            if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
-                String token = jwtUtil.generateToken(user.getEmail());
+            if (userOpt.isPresent()) {
+                User user = userOpt.get();
+                logger.debug("User found: {}, roles: {}", user.getEmail(), user.getRoles());
 
-                String role = user.getRoles().contains("ADMIN") ? "admin" : "user";
-                String redirectUrl = "/dashboard";
+                if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+                    String token = jwtUtil.generateToken(user.getEmail());
+                    String role = user.getRoles().contains("ADMIN") ? "admin" : "user";
+                    String redirectUrl = "/dashboard";
 
-                logger.info("Login successful for email: {} with role: {}", loginRequest.getEmail(), role);
-                AuthResponse response = new AuthResponse(token, user.getId(),
-                        user.getName(), user.getEmail(), role, user.getRoles(), redirectUrl);
-                return ResponseEntity.ok(response);
+                    logger.info("Login successful for email: {} with role: {}", loginRequest.getEmail(), role);
+                    AuthResponse response = new AuthResponse(token, user.getId(),
+                            user.getName(), user.getEmail(), role, user.getRoles(), redirectUrl);
+                    return ResponseEntity.ok(response);
+                } else {
+                    logger.warn("Invalid password for email: {}", loginRequest.getEmail());
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+                }
             } else {
-                logger.warn("Invalid password for email: {}", loginRequest.getEmail());
+                logger.warn("User not found for email: {}", loginRequest.getEmail());
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
             }
-        } else {
-            logger.warn("User not found for email: {}", loginRequest.getEmail());
+        } catch (Exception e) {
+            logger.error("Login error: {}", e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Login failed: " + e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
     }
 
-    // Update admin registration to require admin role for access
     @PostMapping("/register-admin")
-    @PreAuthorize("hasRole('ADMIN')")  // Only existing admins can create new admins
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> registerAdmin(@RequestBody User user) {
         logger.info("Admin register request: email={}", user.getEmail());
 
         try {
+            // Check if user already exists
+            if (userService.findByEmail(user.getEmail()).isPresent()) {
+                return ResponseEntity.badRequest().body("Email already exists");
+            }
+
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.getRoles().add("ADMIN"); // Add admin role
+
+            // Ensure roles are initialized
+            if (user.getRoles() == null) {
+                user.setRoles(new HashSet<>());
+            }
+
+            user.getRoles().add("ADMIN");
+            user.getRoles().add("USER"); // Admin should also have USER role
+
             User savedUser = userService.save(user);
 
             String token = jwtUtil.generateToken(savedUser.getEmail());
@@ -109,21 +146,34 @@ public class AuthController {
         }
     }
 
-    // Add a new endpoint for first admin creation (should be disabled in production)
     @PostMapping("/setup-admin")
     public ResponseEntity<?> setupFirstAdmin(@RequestBody User user) {
         logger.info("First admin setup request: email={}", user.getEmail());
 
-        // Check if any admin exists already
-        if (userService.adminExists()) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                    .body("Admin already exists. Use register-admin endpoint.");
-        }
-
         try {
+            // Check if any admin exists already
+            boolean adminExists = userService.adminExists();
+            logger.info("Admin exists check: {}", adminExists);
+
+            if (adminExists) {
+                logger.warn("Admin already exists, returning 403");
+                return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                        .body("Admin already exists. Use register-admin endpoint.");
+            }
+
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+            // Ensure roles are initialized
+            if (user.getRoles() == null) {
+                user.setRoles(new HashSet<>());
+            }
+
             user.getRoles().add("ADMIN");
+            user.getRoles().add("USER"); // Admin should also have USER role
+
+            logger.info("Saving admin with roles: {}", user.getRoles());
             User savedUser = userService.save(user);
+            logger.info("Admin saved with roles: {}", savedUser.getRoles());
 
             String token = jwtUtil.generateToken(savedUser.getEmail());
             AuthResponse response = new AuthResponse(token, savedUser.getId(),

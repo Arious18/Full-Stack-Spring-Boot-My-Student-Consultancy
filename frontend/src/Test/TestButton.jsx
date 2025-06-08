@@ -9,7 +9,7 @@ function TestButton(){
     return (
 
         <>
-            <button  className="button" onClick={() => navigate('/test')}>
+            <button  className="button" onClick={() => navigate('/EndPointTester')}>
                 TestPage
             </button>
 

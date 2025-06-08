@@ -1,81 +1,114 @@
-/* Base container */
-.cgr-field-detail-container {
-    width: 100%;
-    margin-bottom: 0;
-    padding: 0 1rem;
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Card styling */
-.cgr-field-detail-card {
-    border-radius: 0.75rem;
+/* Ensure no horizontal scrolling or white space */
+html, body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base container - full width, no padding, no margins */
+.FiDe-field-detail-container {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: inherit;
+}
+
+/* Card styling - full width with no margins */
+.FiDe-field-detail-card {
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     background-color: white;
-    max-width: 800px;
-    margin: 2rem auto;
+    width: 100%;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-.cgr-field-detail-card:hover {
+.FiDe-field-detail-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Header section */
-.cgr-header {
+.FiDe-header {
     padding: 1.5rem;
     border-bottom: 1px solid #eee;
+    flex-shrink: 0;
 }
 
-.cgr-title {
+.FiDe-title {
     font-size: 2rem;
     font-weight: 700;
     color: #333;
     margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem 0;
 }
 
-.cgr-subtitle {
+.FiDe-subtitle {
     font-size: 1.25rem;
     color: #666;
+    margin: 0;
 }
 
-/* Image section */
-.cgr-image-container {
+/* Image section - full width */
+.FiDe-image-container {
     height: 300px;
     overflow: hidden;
+    width: 100%;
+    flex-shrink: 0;
 }
 
-.cgr-image {
+.FiDe-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s;
+    display: block;
 }
 
-.cgr-field-detail-card:hover .cgr-image {
+.FiDe-field-detail-card:hover .FiDe-image {
     transform: scale(1.05);
 }
 
 /* Content section */
-.cgr-content {
+.FiDe-content {
     padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.cgr-description {
+.FiDe-description {
     color: #666;
-    margin-bottom: 1rem;
     line-height: 1.5;
+    margin: 0 0 1rem 0;
+    flex: 1;
 }
 
 /* Button group */
-.cgr-button-group {
+.FiDe-button-group {
     display: flex;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 0 0;
+    flex-shrink: 0;
 }
 
-.cgr-button {
-    width: 100%;
+.FiDe-button {
+    flex: 1;
     background-color: #4f46e5;
     color: white;
     padding: 0.75rem;
@@ -84,65 +117,142 @@
     cursor: pointer;
     transition: background-color 0.3s;
     font-weight: 500;
+    font-size: 1rem;
 }
 
-.cgr-button:hover {
+.FiDe-button:hover {
     background-color: #4338ca;
 }
 
-/* Loading and error states */
-.cgr-loading,
-.cgr-error {
-    text-align: center;
-    padding: 3rem 0;
-    color: #666;
+.FiDe-button:focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
 }
 
-.cgr-error {
+/* Loading and error states */
+.FiDe-loading,
+.FiDe-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    color: #666;
+    width: 100%;
+    margin: 0;
+    padding: 2rem;
+    font-size: 1.125rem;
+}
+
+.FiDe-error {
     color: #ef4444;
 }
 
 /* Dark mode support */
-.dark .cgr-field-detail-card {
+.dark .FiDe-field-detail-container {
     background-color: #1f2937;
 }
 
-.dark .cgr-title {
+.dark .FiDe-field-detail-card {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.dark .FiDe-header {
+    border-bottom-color: #374151;
+}
+
+.dark .FiDe-title {
     color: #f3f4f6;
 }
 
-.dark .cgr-subtitle {
+.dark .FiDe-subtitle {
     color: #d1d5db;
 }
 
-.dark .cgr-description {
+.dark .FiDe-description {
     color: #d1d5db;
 }
 
-.dark .cgr-button {
+.dark .FiDe-button {
     background-color: #6366f1;
 }
 
-.dark .cgr-button:hover {
+.dark .FiDe-button:hover {
     background-color: #4f46e5;
 }
 
+.dark .FiDe-loading,
+.dark .FiDe-error {
+    background-color: #1f2937;
+}
+
+.dark .FiDe-loading {
+    color: #d1d5db;
+}
+
+.dark .FiDe-error {
+    color: #ef4444;
+}
+
 /* Responsive adjustments */
-@media (max-width: 640px) {
-    .cgr-button-group {
-        flex-direction: column;
-        gap: 0.5rem;
+@media (max-width: 768px) {
+    .FiDe-header {
+        padding: 1rem;
     }
 
-    .cgr-title {
+    .FiDe-content {
+        padding: 1rem;
+    }
+
+    .FiDe-title {
+        font-size: 1.75rem;
+    }
+
+    .FiDe-subtitle {
+        font-size: 1.125rem;
+    }
+
+    .FiDe-image-container {
+        height: 250px;
+    }
+}
+
+@media (max-width: 640px) {
+    .FiDe-button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .FiDe-title {
         font-size: 1.5rem;
     }
 
-    .cgr-subtitle {
+    .FiDe-subtitle {
         font-size: 1rem;
     }
 
-    .cgr-image-container {
+    .FiDe-image-container {
         height: 200px;
     }
+
+    .FiDe-header {
+        padding: 0.75rem;
+    }
+
+    .FiDe-content {
+        padding: 0.75rem;
+    }
+}
+
+/* Remove any potential margin/padding from parent elements */
+.FiDe-field-detail-container * {
+    box-sizing: border-box;
+}
+
+/* Ensure the container takes full viewport */
+.FiDe-field-detail-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
 }

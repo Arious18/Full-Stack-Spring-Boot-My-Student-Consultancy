@@ -18,7 +18,7 @@ function FacultiesGrid() {
                 setLoading(true);
 
                 // Fetch universities for name lookup
-                const universitiesResponse = await fetch('https://deneme5-g63n.onrender.com/universities');
+                const universitiesResponse = await fetch('http://localhost:8080/universities');
                 if (!universitiesResponse.ok) {
                     throw new Error(`Failed to fetch universities: ${universitiesResponse.status}`);
                 }
@@ -27,8 +27,8 @@ function FacultiesGrid() {
 
                 // Fetch faculties (either all or for a specific university)
                 let facultiesUrl = universityId
-                    ? `https://deneme5-g63n.onrender.com/faculties/university/${universityId}`
-                    : 'https://deneme5-g63n.onrender.com/faculties';
+                    ? `http://localhost:8080/faculties/university/${universityId}`
+                    : 'http://localhost:8080/faculties';
                 console.log('Fetching faculties from:', facultiesUrl);
                 const facultiesResponse = await fetch(facultiesUrl);
                 if (!facultiesResponse.ok) {
@@ -68,62 +68,62 @@ function FacultiesGrid() {
     };
 
     return (
-        <div className="fg-cards-list-container">
-            <header className="fg-cards-header">
-                <div className="fg-header-content">
-                    <h1 className="fg-main-title">
+        <div className="FaGr-cards-list-container">
+            <header className="FaGr-cards-header">
+                <div className="FaGr-header-content">
+                    <h1 className="FaGr-main-title">
                         {universityId ? `Faculties of ${getUniversityName(universityId)}` : 'All Faculties'}
                     </h1>
-                    <button className="fg-see-more-btn" onClick={() => navigate('/university')}>
+                    <button className="FaGr-see-more-btn" onClick={() => navigate('/university')}>
                         Back to Universities
                     </button>
                 </div>
             </header>
 
-            <div className="fg-component-container">
-                <h2 className="fg-section-title">Available Faculties</h2>
+            <div className="FaGr-component-container">
+                <h2 className="FaGr-section-title">Available Faculties</h2>
 
                 {loading && (
-                    <div className="fg-loading">
+                    <div className="FaGr-loading">
                         <p>Loading faculties...</p>
                     </div>
                 )}
 
                 {error && (
-                    <div className="fg-error">
+                    <div className="FaGr-error">
                         <p>{error}</p>
                     </div>
                 )}
 
                 {!loading && !error && (
-                    <div className="fg-cards-grid">
+                    <div className="FaGr-cards-grid">
                         {faculties.map(faculty => (
-                            <div key={faculty.id} className="fg-card">
-                                <div className="fg-card-image-container">
+                            <div key={faculty.id} className="FaGr-card">
+                                <div className="FaGr-card-image-container">
                                     <img
                                         src={faculty.imageUrl}
                                         alt={faculty.name}
-                                        className="fg-card-image"
+                                        className="FaGr-card-image"
                                         onError={(e) => {
                                             e.target.onerror = null;
                                             e.target.src = 'https://pub-cab830fe342c4f9480be11e8b3347409.r2.dev/my-data/error.jpeg';
                                         }}
                                     />
                                 </div>
-                                <div className="fg-card-content">
-                                    <h3 className="fg-card-title">{faculty.name}</h3>
-                                    <p className="fg-card-university">
+                                <div className="FaGr-card-content">
+                                    <h3 className="FaGr-card-title">{faculty.name}</h3>
+                                    <p className="FaGr-card-university">
                                         University: {getUniversityName(faculty.universityId)}
                                     </p>
-                                    <p className="fg-card-description">{faculty.description}</p>
+                                    <p className="FaGr-card-description">{faculty.description}</p>
                                     {faculty.price !== undefined && (
-                                        <div className="fg-card-price">
-                                            <span className="fg-price-label">Price:</span>
-                                            <span className="fg-price-value">${faculty.price.toLocaleString()}</span>
+                                        <div className="FaGr-card-price">
+                                            <span className="FaGr-price-label">Price:</span>
+                                            <span className="FaGr-price-value">${faculty.price.toLocaleString()}</span>
                                         </div>
                                     )}
                                     <button
-                                        className="fg-learn-more-btn"
+                                        className="FaGr-learn-more-btn"
                                         onClick={() => navigate(`/fields/${faculty.id}`)}
                                     >
                                         Learn More
@@ -135,7 +135,7 @@ function FacultiesGrid() {
                 )}
 
                 {!loading && !error && faculties.length === 0 && (
-                    <div className="fg-no-results">
+                    <div className="FaGr-no-results">
                         <p>No faculties found{universityId ? ' for this university' : ''}.</p>
                     </div>
                 )}

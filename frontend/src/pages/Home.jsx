@@ -9,6 +9,10 @@ import LogoCarusel from "../components/logoCarusel/LogoCarusel.jsx";
 import TestPage from "../Test/TestPage.jsx";
 import TestButton from "../Test/TestButton.jsx";
 import UniversitiesGrid from "../components/card/UniversitiesGrid.jsx";
+import StatsCounter from "../components/statsCounter/StatsCounter.jsx";
+import TestimonialSection from "../components/testimonialSection/TestimonialSection.jsx";
+import BusinessProjectsSection from "../components/BusinessProjectsSection/BusinessProjectsSection.jsx";
+import ScrollToTop from "../components/scroll/ScrollToTop.jsx";
 
 function Home() {
     return (
@@ -18,13 +22,14 @@ function Home() {
             <Hero/>
             <UniversitiesGrid/>
 
-
+            <BusinessProjectsSection/>
+            <Flag/>
+            <TestimonialSection/>
             <Comp2/>
             <Comp3/>
-            <Flag/>
             <LogoCarusel/>
-
-            <TestButton/>
+            <StatsCounter/>
+            {/*<TestButton/>*/}
             <Footer/>
         </>
     );

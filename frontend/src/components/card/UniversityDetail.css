@@ -1,148 +1,1322 @@
-/* Base container */
-.cgr-university-detail-container {
-    width: 100%;
-    margin-bottom: 0;
-    padding: 0 1rem;
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Card styling */
-.cgr-university-detail-card {
-    border-radius: 0.75rem;
+.ud-university-detail-page {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+.ud-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.ud-btn-icon {
+    font-size: 1.1rem;
+}
+
+/* Hero Section */
+.ud-hero-section {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: white;
-    max-width: 800px;
-    margin: 2rem auto;
+    border-radius: 0 0 2rem 2rem;
 }
 
-.cgr-university-detail-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+.ud-hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
 }
 
-/* Header section */
-.cgr-header {
-    padding: 1.5rem;
-    border-bottom: 1px solid #eee;
-}
-
-.cgr-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.cgr-subtitle {
-    font-size: 1.25rem;
-    color: #666;
-}
-
-/* Image section */
-.cgr-image-container {
-    height: 300px;
-    overflow: hidden;
-}
-
-.cgr-image {
+.ud-hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s;
+    object-position: center;
 }
 
-.cgr-university-detail-card:hover .cgr-image {
-    transform: scale(1.05);
+.ud-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.8) 0%,
+            rgba(30, 41, 59, 0.6) 50%,
+            rgba(51, 65, 85, 0.4) 100%
+    );
+    z-index: 2;
 }
 
-/* Content section */
-.cgr-content {
-    padding: 1.5rem;
-}
-
-.cgr-description {
-    color: #666;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-/* Button group */
-.cgr-button-group {
+.ud-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 4rem;
 }
 
-.cgr-button {
-    width: 100%;
-    background-color: #4f46e5;
+.ud-hero-text {
+    flex: 1;
     color: white;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+}
+
+.ud-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ud-hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ud-stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
-.cgr-button:hover {
-    background-color: #4338ca;
+.ud-stat-icon {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-/* Loading and error states */
-.cgr-loading,
-.cgr-error {
+.ud-hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+    min-width: 200px;
+}
+
+.ud-primary-btn,
+.ud-secondary-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.ud-primary-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+}
+
+.ud-primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+}
+
+.ud-secondary-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ud-secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Content Section */
+.ud-content-section {
+    padding: 4rem 0;
+    background: white;
+    position: relative;
+}
+
+.ud-description-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.ud-description-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+}
+
+.ud-card-header {
+    margin-bottom: 2rem;
     text-align: center;
-    padding: 3rem 0;
-    color: #666;
 }
 
-.cgr-error {
-    color: #ef4444;
+.ud-section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
 }
 
-/* Dark mode support */
-.dark .cgr-university-detail-card {
-    background-color: #1f2937;
+.ud-title-decoration {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    margin: 0 auto;
+    border-radius: 2px;
 }
 
-.dark .cgr-title {
-    color: #f3f4f6;
+.ud-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #64748b;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.dark .cgr-subtitle {
-    color: #d1d5db;
+/* Faculties Section */
+.ud-faculties-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    position: relative;
 }
 
-.dark .cgr-description {
-    color: #d1d5db;
+.ud-section-header {
+    text-align: center;
+    margin-bottom: 4rem;
 }
 
-.dark .cgr-button {
-    background-color: #6366f1;
+.ud-section-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.dark .cgr-button:hover {
-    background-color: #4f46e5;
+/* View Controls */
+.ud-view-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
-    .cgr-button-group {
+.ud-view-toggle {
+    background: white;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    display: flex;
+}
+
+.ud-view-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.ud-view-btn.active {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.ud-view-btn:hover:not(.active) {
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+/* Grid View - FIXED for better explore button visibility */
+.ud-faculties-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.ud-faculties-grid-compact {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.ud-faculty-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    /* FIXED: Changed from aspect-ratio: 1 to min-height for better button visibility */
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ud-faculty-card-compact {
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    /* FIXED: Adjusted min-height for compact version */
+    min-height: 360px;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ud-faculty-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.ud-faculty-card-compact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ud-card-image-container {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ud-card-image-container-compact {
+    height: 160px;
+}
+
+.ud-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+}
+
+.ud-faculty-card:hover .ud-card-image {
+    transform: scale(1.1);
+}
+
+.ud-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(139, 92, 246, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ud-faculty-card:hover .ud-card-overlay {
+    opacity: 1;
+}
+
+.ud-card-quick-btn {
+    background: white;
+    color: #3b82f6;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ud-card-quick-btn-compact {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.ud-card-quick-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ud-card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* FIXED: Ensure minimum height for content area */
+    min-height: 200px;
+}
+
+.ud-card-content-compact {
+    padding: 1rem;
+    /* FIXED: Ensure minimum height for compact content area */
+    min-height: 200px;
+}
+
+.ud-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.ud-card-title-compact {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.ud-card-description {
+    color: #64748b;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    flex: 1;
+    /* FIXED: Ensure description takes available space but leaves room for button */
+    min-height: 60px;
+}
+
+.ud-card-description-compact {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    flex: 1;
+    min-height: 60px;
+}
+
+.ud-card-price {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid #0ea5e9;
+}
+
+.ud-card-price-compact {
+    padding: 0.5rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.ud-price-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.ud-price-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0ea5e9;
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.ud-price-value-compact {
+    font-size: 1.2rem;
+}
+
+.ud-price-period {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.ud-card-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    font-size: 0.95rem;
+    margin-top: auto;
+    /* FIXED: Ensure button has minimum height and is always visible */
+    min-height: 44px;
+    flex-shrink: 0;
+}
+
+.ud-card-btn-compact {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+    gap: 0.4rem;
+    min-height: 40px;
+}
+
+.ud-card-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.ud-btn-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.ud-card-btn:hover .ud-btn-arrow {
+    transform: translateX(3px);
+}
+
+/* Table View - Fixed column widths */
+.ud-faculties-table-container {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    margin-top: 2rem;
+}
+
+.ud-faculties-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.ud-faculties-table thead {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.ud-faculties-table th {
+    padding: 1.25rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 0.95rem;
+    border-bottom: 2px solid rgba(226, 232, 240, 0.5);
+}
+
+.ud-faculties-table th:first-child {
+    padding-left: 1.5rem;
+    width: 25%;
+}
+
+.ud-faculties-table th:nth-child(2) {
+    width: 40%;
+}
+
+.ud-faculties-table th:nth-child(3) {
+    width: 15%;
+}
+
+.ud-faculties-table th:last-child {
+    padding-right: 1.5rem;
+    width: 20%;
+}
+
+.ud-table-row {
+    border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+    transition: background-color 0.2s ease;
+}
+
+.ud-table-row:hover {
+    background: #f8fafc;
+}
+
+.ud-faculties-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.ud-faculties-table td:first-child {
+    padding-left: 1.5rem;
+}
+
+.ud-faculties-table td:last-child {
+    padding-right: 1.5rem;
+}
+
+.ud-table-faculty {
+    max-width: none;
+}
+
+.ud-table-faculty-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ud-table-faculty-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    border: 2px solid rgba(226, 232, 240, 0.5);
+    flex-shrink: 0;
+}
+
+.ud-table-faculty-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.ud-table-description {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    max-height: 4.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.ud-table-price {
+    text-align: center;
+}
+
+.ud-table-price-value {
+    font-weight: 600;
+    color: #0ea5e9;
+    font-size: 0.95rem;
+}
+
+.ud-table-price-na {
+    color: #94a3b8;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.ud-table-actions {
+    text-align: center;
+}
+
+.ud-table-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.ud-table-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Pagination */
+.ud-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.ud-pagination-info {
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.ud-pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ud-pagination-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 40px;
+    height: 40px;
+    padding: 0.5rem;
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    background: white;
+    color: #64748b;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.ud-pagination-btn:hover {
+    background: #f8fafc;
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+.ud-pagination-btn.ud-pagination-active {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.ud-pagination-nav {
+    padding: 0.5rem 1rem;
+    min-width: auto;
+}
+
+.ud-pagination-dots {
+    color: #94a3b8;
+    padding: 0 0.5rem;
+    font-weight: 500;
+}
+
+/* Empty State */
+.ud-empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #64748b;
+}
+
+.ud-empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.ud-empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #1e293b;
+}
+
+/* Share Section - Updated with more social platforms */
+.ud-share-section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.ud-share-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 2rem;
+    padding: 3rem;
+    text-align: center;
+    border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.ud-share-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.ud-share-subtitle {
+    color: #64748b;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.ud-social-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.ud-social-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    justify-content: center;
+    font-size: 0.95rem;
+}
+
+.ud-social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.ud-social-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.ud-facebook { background: linear-gradient(135deg, #1877f2, #0d5bb5); }
+.ud-twitter { background: linear-gradient(135deg, #1da1f2, #0d8bd3); }
+.ud-whatsapp { background: linear-gradient(135deg, #25d366, #1ab354); }
+.ud-telegram { background: linear-gradient(135deg, #0088cc, #006ba3); }
+.ud-linkedin { background: linear-gradient(135deg, #0077b5, #005885); }
+.ud-reddit { background: linear-gradient(135deg, #ff4500, #d13800); }
+
+/* Loading States */
+.ud-loading-container,
+.ud-error-container {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.ud-loading-spinner,
+.ud-error-content {
+    text-align: center;
+    padding: 3rem;
+}
+
+.ud-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 2rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ud-loading-spinner p {
+    font-size: 1.2rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.ud-error-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.ud-error-content h2 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.ud-error-content p {
+    color: #64748b;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.ud-retry-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ud-retry-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* Dark Mode Support */
+.dark .ud-university-detail-page {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #e2e8f0;
+}
+
+.dark .ud-hero-overlay {
+    background: linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.9) 0%,
+            rgba(30, 41, 59, 0.7) 50%,
+            rgba(51, 65, 85, 0.5) 100%
+    );
+}
+
+.dark .ud-content-section,
+.dark .ud-share-section {
+    background: #1e293b;
+}
+
+.dark .ud-description-card,
+.dark .ud-share-card {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-color: rgba(71, 85, 105, 0.5);
+}
+
+.dark .ud-faculties-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.dark .ud-faculty-card,
+.dark .ud-faculties-table-container,
+.dark .ud-view-toggle {
+    background: #334155;
+    border-color: rgba(71, 85, 105, 0.5);
+}
+
+.dark .ud-faculties-table thead {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+.dark .ud-table-row:hover {
+    background: #475569;
+}
+
+.dark .ud-section-title,
+.dark .ud-card-title,
+.dark .ud-share-title,
+.dark .ud-error-content h2,
+.dark .ud-table-faculty-name,
+.dark .ud-faculties-table th {
+    color: #f1f5f9;
+}
+
+.dark .ud-description,
+.dark .ud-section-subtitle,
+.dark .ud-card-description,
+.dark .ud-share-subtitle,
+.dark .ud-error-content p,
+.dark .ud-loading-spinner p,
+.dark .ud-table-description,
+.dark .ud-pagination-info {
+    color: #94a3b8;
+}
+
+.dark .ud-card-price {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-left-color: #0ea5e9;
+}
+
+.dark .ud-price-label {
+    color: #94a3b8;
+}
+
+.dark .ud-loading-container,
+.dark .ud-error-container {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.dark .ud-pagination-btn {
+    background: #334155;
+    border-color: rgba(71, 85, 105, 0.5);
+    color: #94a3b8;
+}
+
+.dark .ud-pagination-btn:hover {
+    background: #475569;
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+.dark .ud-view-btn {
+    color: #94a3b8;
+}
+
+.dark .ud-view-btn:hover:not(.active) {
+    background: #475569;
+    color: #f1f5f9;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .ud-faculties-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    .ud-faculties-grid-compact {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    /* FIXED: Responsive height adjustments */
+    .ud-faculty-card {
+        min-height: 360px;
+    }
+
+    .ud-faculty-card-compact {
+        min-height: 340px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ud-hero-content {
         flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .ud-hero-actions {
+        flex-direction: row;
+        min-width: auto;
+    }
+
+    .ud-faculties-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .ud-faculties-grid-compact {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .ud-pagination {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .ud-social-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    /* FIXED: Responsive height adjustments */
+    .ud-faculty-card {
+        min-height: 350px;
+    }
+
+    .ud-faculty-card-compact {
+        min-height: 330px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ud-container {
+        padding: 0 1rem;
+    }
+
+    .ud-hero-section {
+        height: 70vh;
+        min-height: 500px;
+    }
+
+    .ud-hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .ud-hero-stats {
+        align-items: center;
+    }
+
+    .ud-hero-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .ud-description-card,
+    .ud-share-card {
+        padding: 2rem;
+    }
+
+    .ud-section-title {
+        font-size: 2rem;
+    }
+
+    .ud-faculties-grid,
+    .ud-faculties-grid-compact {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .ud-social-buttons {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .ud-social-btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .ud-view-controls {
+        margin-bottom: 2rem;
+    }
+
+    .ud-view-toggle {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .ud-view-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    /* Table responsive */
+    .ud-faculties-table-container {
+        overflow-x: auto;
+    }
+
+    .ud-faculties-table {
+        min-width: 700px;
+    }
+
+    .ud-table-faculty {
+        min-width: 180px;
+    }
+
+    .ud-table-description {
+        min-width: 280px;
+    }
+
+    /* Pagination responsive */
+    .ud-pagination-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .ud-pagination-nav {
+        order: -1;
+        margin-bottom: 0.5rem;
+    }
+
+    /* FIXED: Responsive height adjustments */
+    .ud-faculty-card,
+    .ud-faculty-card-compact {
+        min-height: 320px;
+    }
+
+    .ud-card-content,
+    .ud-card-content-compact {
+        min-height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ud-hero-section {
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    .ud-description-card,
+    .ud-share-card {
+        margin: 0 0.5rem;
+        padding: 1.5rem;
+    }
+
+    .ud-card-content,
+    .ud-card-content-compact {
+        padding: 1rem;
+    }
+
+    .ud-social-buttons {
+        grid-template-columns: 1fr;
         gap: 0.5rem;
     }
 
-    .cgr-title {
-        font-size: 1.5rem;
+    .ud-social-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
     }
 
-    .cgr-subtitle {
-        font-size: 1rem;
+    .ud-faculties-grid-compact {
+        grid-template-columns: 1fr;
     }
 
-    .cgr-image-container {
-        height: 200px;
+    .ud-card-image-container-compact {
+        height: 140px;
+    }
+
+    .ud-pagination {
+        padding: 1.5rem 0;
+    }
+
+    .ud-pagination-info {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .ud-pagination-controls {
+        gap: 0.25rem;
+    }
+
+    .ud-pagination-btn {
+        min-width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+
+    .ud-pagination-nav {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    /* FIXED: Responsive height adjustments */
+    .ud-faculty-card,
+    .ud-faculty-card-compact {
+        min-height: 300px;
+    }
+
+    .ud-card-content,
+    .ud-card-content-compact {
+        padding: 1rem;
+        min-height: 160px;
     }
 }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus styles for better accessibility */
+.ud-primary-btn:focus,
+.ud-secondary-btn:focus,
+.ud-card-btn:focus,
+.ud-social-btn:focus,
+.ud-retry-btn:focus,
+.ud-view-btn:focus,
+.ud-pagination-btn:focus,
+.ud-table-btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .ud-hero-section,
+    .ud-share-section,
+    .ud-view-controls,
+    .ud-pagination {
+        display: none;
+    }
+
+    .ud-university-detail-page {
+        background: white !important;
+        color: black !important;
+    }
+
+    .ud-faculties-table-container {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Custom scrollbar for table */
+.ud-faculties-table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.ud-faculties-table-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.ud-faculties-table-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 4px;
+}
+
+/* Animation delays for staggered effect */
+.ud-faculty-card-compact:nth-child(1) { animation-delay: 0s; }
+.ud-faculty-card-compact:nth-child(2) { animation-delay: 0.05s; }
+.ud-faculty-card-compact:nth-child(3) { animation-delay: 0.1s; }
+.ud-faculty-card-compact:nth-child(4) { animation-delay: 0.15s; }
+.ud-faculty-card-compact:nth-child(5) { animation-delay: 0.2s; }
+.ud-faculty-card-compact:nth-child(6) { animation-delay: 0.25s; }
+.ud-faculty-card-compact:nth-child(7) { animation-delay: 0.3s; }
+.ud-faculty-card-compact:nth-child(8) { animation-delay: 0.35s; }
+.ud-faculty-card-compact:nth-child(9) { animation-delay: 0.4s; }
+.ud-faculty-card-compact:nth-child(10) { animation-delay: 0.45s; }
+
+/* Loading animation for table rows */
+.ud-table-row {
+    animation: fadeInUp 0.4s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.ud-table-row:nth-child(1) { animation-delay: 0s; }
+.ud-table-row:nth-child(2) { animation-delay: 0.05s; }
+.ud-table-row:nth-child(3) { animation-delay: 0.1s; }
+.ud-table-row:nth-child(4) { animation-delay: 0.15s; }
+.ud-table-row:nth-child(5) { animation-delay: 0.2s; }

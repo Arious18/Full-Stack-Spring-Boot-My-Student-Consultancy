@@ -4,9 +4,9 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -37,16 +37,24 @@ public class User implements UserDetails {
     private String profilePicture;
     private String bio;
 
-    private Set<String> roles = new HashSet<>(); // Initialize with an empty HashSet
-    public User() {
-        this.roles.add("USER"); // Default role
-    }
+    private Set<String> roles = new HashSet<>();
     private LocalDateTime createdDate = LocalDateTime.now();
+
+    public User() {
+        // Initialize roles with USER by default only if empty
+        if (this.roles == null) {
+            this.roles = new HashSet<>();
+        }
+        if (this.roles.isEmpty()) {
+            this.roles.add("USER");
+        }
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Convert each role to a SimpleGrantedAuthority with "ROLE_" prefix
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                .map(role -> new SimpleGrantedAuthority(role.startsWith("ROLE_") ? role : "ROLE_" + role))
                 .collect(Collectors.toSet());
     }
 

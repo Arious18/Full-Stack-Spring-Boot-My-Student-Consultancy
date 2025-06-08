@@ -1,0 +1,424 @@
+/* Privacy Page Wrapper */
+.privacy-page-wrapper {
+    min-height: 100vh;
+    background-color: #f8fafc;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.dark .privacy-page-wrapper {
+    background-color: #0f172a;
+}
+
+/* Admin Controls */
+.admin-controls {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 100;
+}
+
+.edit-button,
+.save-button,
+.cancel-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-button {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #4338ca;
+}
+
+.save-button {
+    background-color: #10b981;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #059669;
+}
+
+.cancel-button {
+    background-color: #ef4444;
+    color: white;
+    margin-left: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #dc2626;
+}
+
+.edit-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* Editable Elements */
+.editable-input,
+.editable-textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #4f46e5;
+    border-radius: 4px;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    color: inherit;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .editable-input,
+.dark .editable-textarea {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border-color: #818cf8;
+}
+
+.editable-textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+
+/* Hero Section */
+.privacy-hero {
+    background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+    color: white;
+    padding: 8rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.privacy-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.privacy-hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.privacy-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.privacy-hero p {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Main Container */
+.privacy-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Section Styles */
+.privacy-section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.privacy-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.section-icon {
+    width: 32px;
+    height: 32px;
+    color: #4f46e5;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    color: #1e293b;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.privacy-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #475569;
+}
+
+/* Formatted Content */
+.formatted-content {
+    white-space: pre-wrap;
+}
+
+.content-subheading {
+    font-size: 1.6rem;
+    color: #1e293b;
+    margin: 2rem 0 1rem;
+    font-weight: 700;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+
+.content-subsubheading {
+    font-size: 1.3rem;
+    color: #334155;
+    margin: 1.5rem 0 1rem;
+    font-weight: 600;
+}
+
+.content-paragraph {
+    margin-bottom: 1rem;
+    color: #475569;
+}
+
+.content-list-item {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #475569;
+    position: relative;
+}
+
+.content-list-item::before {
+    content: "•";
+    color: #4f46e5;
+    font-weight: bold;
+    position: absolute;
+    left: -1rem;
+}
+
+/* Last Updated Section */
+.last-updated {
+    text-align: center;
+    font-style: italic;
+    color: #64748b;
+    margin-bottom: 4rem;
+    padding: 1rem;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+}
+
+/* CTA Section */
+.cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+    color: white;
+    padding: 5rem 3rem;
+    border-radius: 16px;
+    margin: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.cta-button {
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.cta-button.primary {
+    background-color: white;
+    color: #4f46e5;
+}
+
+.cta-button.primary:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Dark Mode Styles */
+.dark .privacy-section {
+    background-color: #1e293b;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dark .section-title {
+    color: #f1f5f9;
+}
+
+.dark .section-icon {
+    color: #818cf8;
+}
+
+.dark .privacy-content {
+    color: #94a3b8;
+}
+
+.dark .content-subheading {
+    color: #f1f5f9;
+    border-bottom-color: #334155;
+}
+
+.dark .content-subsubheading {
+    color: #e2e8f0;
+}
+
+.dark .content-paragraph {
+    color: #94a3b8;
+}
+
+.dark .content-list-item {
+    color: #94a3b8;
+}
+
+.dark .content-list-item::before {
+    color: #818cf8;
+}
+
+.dark .last-updated {
+    background-color: #273244;
+    color: #94a3b8;
+}
+
+.dark .cta-section {
+    background: linear-gradient(135deg, #3730a3 0%, #312e81 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .privacy-container {
+        width: 95%;
+    }
+
+    .privacy-hero {
+        padding: 6rem 1rem;
+    }
+
+    .privacy-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .privacy-section {
+        padding: 2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-button {
+        width: 100%;
+    }
+
+    .admin-controls {
+        top: 70px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .privacy-hero {
+        padding: 4rem 1rem;
+    }
+
+    .privacy-hero h1 {
+        font-size: 2rem;
+    }
+
+    .privacy-hero p {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .cta-section h2 {
+        font-size: 2rem;
+    }
+
+    .edit-button,
+    .save-button,
+    .cancel-button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}

@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*") // Configure as needed for production
+@CrossOrigin(origins = "http://localhost:5173") // Configure as needed for production
 public class SearchController {
 
     @Autowired

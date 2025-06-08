@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
 import './LoginPage.css';
+import { useAuth } from '../../Auth/components/AuthContext.jsx'; // Adjust path as needed
 
 export const LoginPage = () => {
     const navigate = useNavigate();
+    const { login } = useAuth(); // Use auth context
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
@@ -14,36 +16,48 @@ export const LoginPage = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    // API base URL - hardcoded for development
+    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setLoading(true);
+
         const payload = {
             email: formData.email,
             password: formData.password,
         };
-        console.log('Login payload:', payload);
+
+        console.log('Login payload:', { email: payload.email, passwordLength: payload.password.length });
+
         try {
-            const response = await axios.post('https://deneme5-g63n.onrender.com/auth/login', payload, {
+            const response = await axios.post(`${API_BASE_URL}/auth/login`, payload, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });
-            console.log('Login response:', response.data);
-            const { token, userId, name, email, access } = response.data;
-            if (token) {
-                localStorage.setItem('token', token);
-                localStorage.setItem('userId', userId);
-                localStorage.setItem('userName', name);
-                localStorage.setItem('userEmail', email);
-                localStorage.setItem('access', access);
-                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                if (access === 'admin') {
-                    navigate('/dashboard');
-                } else {
-                    navigate('/');
-                }
+
+            console.log('Login response status:', response.status);
+
+            if (response.data && response.data.token) {
+                const userData = {
+                    token: response.data.token,
+                    userId: response.data.userId,
+                    name: response.data.name,
+                    email: response.data.email,
+                    access: response.data.access,
+                };
+
+                // Use login function from auth context
+                login(userData);
+
+                console.log('Login successful, redirecting to home');
+
+                // Always navigate to home page
+                navigate('/');
             } else {
-                setError('No token received from server');
+                console.error('Invalid response format:', response.data);
+                setError('Invalid response from server');
             }
         } catch (error) {
             console.error('Login error:', {
@@ -51,7 +65,16 @@ export const LoginPage = () => {
                 status: error.response?.status,
                 data: error.response?.data,
             });
-            setError(error.response?.data || 'Login failed. Check network or server.');
+
+            if (error.response?.status === 401) {
+                setError('Invalid email or password');
+            } else if (error.response?.data) {
+                setError(typeof error.response.data === 'string'
+                    ? error.response.data
+                    : 'Login failed. Please try again.');
+            } else {
+                setError('Unable to connect to server. Please check your network connection.');
+            }
         } finally {
             setLoading(false);
         }

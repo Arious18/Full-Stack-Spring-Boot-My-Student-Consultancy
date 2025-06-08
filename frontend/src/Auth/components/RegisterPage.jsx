@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from 'lucide-react';
 import './RegisterPage.css';
+import { useAuth } from './AuthContext.jsx'; // Adjust path as needed
 
 export const RegisterPage = () => {
     const navigate = useNavigate();
+    const { login } = useAuth(); // Use auth context
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -14,6 +16,9 @@ export const RegisterPage = () => {
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    // API base URL - hardcoded for development
+    const API_BASE_URL = 'http://localhost:8080';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,23 +31,28 @@ export const RegisterPage = () => {
         };
         console.log('Register payload:', payload);
         try {
-            const response = await axios.post('https://deneme5-g63n.onrender.com/auth/register', payload, {
+            const response = await axios.post(`http://localhost:8080/auth/register`, payload, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });
             console.log('Register response:', response.data);
+
             const { token, userId, name, email, access } = response.data;
+
             if (token) {
-                localStorage.setItem('token', token);
-                localStorage.setItem('userId', userId);
-                localStorage.setItem('userName', name);
-                localStorage.setItem('userEmail', email);
-                localStorage.setItem('access', access);
-                if (access === 'admin') {
-                    navigate('/dashboard');
-                } else {
-                    navigate('/');
-                }
+                const userData = {
+                    token,
+                    userId,
+                    name,
+                    email,
+                    access
+                };
+
+                // Use login function from auth context
+                login(userData);
+
+                // Always navigate to home page
+                navigate('/');
             } else {
                 setError('No token received from server');
                 navigate('/login');

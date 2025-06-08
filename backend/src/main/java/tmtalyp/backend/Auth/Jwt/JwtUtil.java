@@ -7,13 +7,9 @@ import org.springframework.stereotype.Component;
 import tmtalyp.backend.Auth.user.User;
 import tmtalyp.backend.Auth.user.UserRepository;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Function;
-import java.util.Optional;
 import javax.crypto.SecretKey;
+import java.util.*;
+import java.util.function.Function;
 
 @Component
 public class JwtUtil {
@@ -43,9 +39,12 @@ public class JwtUtil {
             roles = userOpt.get().getRoles();
         }
 
+        // Convert roles to a list for JWT claims
+        List<String> rolesList = new ArrayList<>(roles);
+
         return Jwts.builder()
                 .subject(email)
-                .claim("roles", roles)
+                .claim("roles", rolesList)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSigningKey(), Jwts.SIG.HS256)
@@ -54,12 +53,14 @@ public class JwtUtil {
 
     public String getEmailFromToken(String token) {
         try {
-            Jws<Claims> claims = Jwts.parser()
+            Claims claims = Jwts.parser()
                     .verifyWith(getSigningKey())
                     .build()
-                    .parseSignedClaims(token);
-            return claims.getPayload().getSubject();
+                    .parseSignedClaims(token)
+                    .getPayload();
+            return claims.getSubject();
         } catch (Exception e) {
+            System.err.println("Error extracting email from token: " + e.getMessage());
             return null;
         }
     }
@@ -71,33 +72,45 @@ public class JwtUtil {
                     .build()
                     .parseSignedClaims(token);
             return true;
+        } catch (ExpiredJwtException e) {
+            System.err.println("JWT token is expired: " + e.getMessage());
+            return false;
         } catch (JwtException | IllegalArgumentException e) {
+            System.err.println("Invalid JWT token: " + e.getMessage());
             return false;
         }
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         try {
-            Jws<Claims> claimsJws = Jwts.parser()
+            Claims claims = Jwts.parser()
                     .verifyWith(getSigningKey())
                     .build()
-                    .parseSignedClaims(token);
-            return claimsResolver.apply(claimsJws.getPayload());
+                    .parseSignedClaims(token)
+                    .getPayload();
+            return claimsResolver.apply(claims);
         } catch (Exception e) {
+            System.err.println("Error extracting claim: " + e.getMessage());
             return null;
         }
     }
 
     public Set<String> extractRoles(String token) {
-        Object rolesObj = extractClaim(token, claims -> claims.get("roles"));
+        try {
+            Object rolesObj = extractClaim(token, claims -> claims.get("roles"));
+            Set<String> roles = new HashSet<>();
 
-        if (rolesObj instanceof Set<?>) {
-            return (Set<String>) rolesObj;
-        } else if (rolesObj instanceof List<?>) {
-            return new HashSet<>((List<String>) rolesObj);
-        } else if (rolesObj instanceof String) {
-            return new HashSet<>(Set.of(((String) rolesObj).replace("[", "").replace("]", "").replace("\"", "").split(",")));
-        } else {
+            if (rolesObj instanceof List<?>) {
+                for (Object role : (List<?>) rolesObj) {
+                    if (role instanceof String) {
+                        roles.add((String) role);
+                    }
+                }
+            }
+
+            return roles;
+        } catch (Exception e) {
+            System.err.println("Error extracting roles: " + e.getMessage());
             return new HashSet<>();
         }
     }

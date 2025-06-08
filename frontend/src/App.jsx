@@ -1,6 +1,7 @@
 import React from 'react';
 import AppRouter from './AppRouter';
 import axios from 'axios';
+import ScrollToTop from "./components/scroll/ScrollToTop.jsx";
 
 // Configure axios with interceptors for token handling
 axios.interceptors.request.use(
@@ -38,7 +39,7 @@ axios.interceptors.response.use(
 function App() {
     return (
         <>
-
+            <ScrollToTop />
             <AppRouter/>
 
         </>

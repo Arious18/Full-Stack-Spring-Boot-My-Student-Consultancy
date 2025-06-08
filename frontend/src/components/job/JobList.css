@@ -1,0 +1,2041 @@
+.JoLiFiltersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.JoLiFilterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.JoLiFilterGroupLabel {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.JoLiFilterGroupLabel::before {
+    content: '';
+    width: 4px;
+    height: 16px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
+.JoLiFilterSelect {
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    padding-right: 3rem;
+}
+
+.JoLiFilterSelect:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    transform: translateY(-1px);
+}
+
+.JoLiCheckboxFiltersContainer {
+    border-top: 2px solid var(--border-light);
+    padding-top: 2rem;
+}
+
+.JoLiCheckboxGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.JoLiCheckboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    user-select: none;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.JoLiCheckboxLabel:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-light);
+}
+
+.JoLiFilterCheckboxInput {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-medium);
+    border-radius: 4px;
+    background: var(--bg-primary);
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.JoLiFilterCheckboxInput:checked {
+    background: var(--gradient-primary);
+    border-color: var(--primary-blue);
+    transform: scale(1.05);
+}
+
+.JoLiFilterCheckboxInput:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Results Summary */
+.JoLiResultsSummary {
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-blue);
+    box-shadow: var(--shadow-light);
+}
+
+.JoLiResultsCount {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.JoLiResultsCount::before {
+    content: '📊';
+    font-size: 1.2rem;
+}
+
+/* GRID VIEW - JOB CARDS */
+.jobs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.job-card {
+    background: var(--gradient-surface);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-slow);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 580px;
+    transform-origin: center;
+}
+
+.job-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, var(--primary-blue) 50%, transparent 100%);
+    transform: scaleX(0);
+    transition: transform var(--transition-slow);
+    z-index: 2;
+}
+
+.job-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--primary-blue);
+}
+
+.job-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Image Section */
+.job-card-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-light) 100%);
+}
+
+.job-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--text-light);
+    background: var(--gradient-surface);
+}
+
+.placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0.6;
+}
+
+.placeholder-content span {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Image Overlay */
+.job-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.1) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(0, 0, 0, 0.7) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+/* Badges */
+.job-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-self: flex-end;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+}
+
+.badge:hover {
+    transform: scale(1.05);
+}
+
+.badge.urgent {
+    background: linear-gradient(135deg,
+    rgba(220, 38, 38, 0.95) 0%,
+    rgba(185, 28, 28, 0.95) 100%);
+    color: white;
+    animation: pulseGlow 2s infinite;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+}
+
+.badge.featured {
+    background: linear-gradient(135deg,
+    rgba(245, 158, 11, 0.95) 0%,
+    rgba(217, 119, 6, 0.95) 100%);
+    color: white;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+.badge.remote {
+    background: linear-gradient(135deg,
+    rgba(16, 185, 129, 0.95) 0%,
+    rgba(5, 150, 105, 0.95) 100%);
+    color: white;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.job-type-badge {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(30, 41, 59, 0.9);
+    color: white;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+}
+
+.job-type-badge:hover {
+    background: rgba(30, 41, 59, 1);
+    transform: translateX(4px);
+}
+
+/* Content Section */
+.job-card-content {
+    padding: 1.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--bg-primary);
+}
+
+.job-meta {
+    margin-bottom: 0.75rem;
+}
+
+.meta-row {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color var(--transition-normal);
+}
+
+.meta-item:hover {
+    color: var(--primary-blue);
+}
+
+.job-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.4;
+    height: auto;
+    min-height: 3.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    transition: color var(--transition-normal);
+}
+
+.job-card:hover .job-title {
+    color: var(--primary-blue);
+}
+
+.job-company {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    transition: color var(--transition-normal);
+}
+
+.job-company:hover {
+    color: var(--primary-blue-dark);
+}
+
+.job-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    height: auto;
+    min-height: 4.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Skills Section */
+.job-skills-section {
+    margin: 0.75rem 0;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.job-skill {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    color: #1d4ed8;
+    padding: 0.375rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid #bfdbfe;
+    white-space: nowrap;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.job-skill:hover {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(29, 78, 216, 0.2);
+}
+
+.job-skill.more-skills {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-light) 100%);
+    color: var(--text-muted);
+    border-color: var(--border-medium);
+}
+
+/* Footer Section */
+.job-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.salary-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--accent-green);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.salary-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.salary-amount {
+    font-weight: 700;
+}
+
+.salary-period {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Engagement Stats */
+.job-engagement {
+    margin-bottom: 1rem;
+}
+
+.engagement-stats {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    min-width: 60px;
+}
+
+.stat-item:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-2px);
+}
+
+.stat-item span {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.stat-item label {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-item svg {
+    color: var(--text-muted);
+    transition: color var(--transition-normal);
+}
+
+.stat-item:hover svg {
+    color: var(--primary-blue);
+}
+
+/* Apply Button */
+.apply-section {
+    margin-bottom: 1rem;
+}
+
+.apply-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    width: 100%;
+    justify-content: center;
+}
+
+.apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue-darker) 100%);
+}
+
+/* Deadline Section */
+.deadline-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-red);
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: #fef2f2;
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid #fecaca;
+}
+
+/* TABLE VIEW STYLES */
+.jobs-table-container {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+.jobs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.jobs-table-header {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--border-light) 100%);
+    border-bottom: 2px solid var(--border-medium);
+}
+
+.jobs-table-header-cell {
+    padding: 1.25rem 1rem;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-right: 1px solid var(--border-light);
+}
+
+.jobs-table-header-cell:last-child {
+    border-right: none;
+}
+
+.job-table-row {
+    border-bottom: 1px solid var(--border-light);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.job-table-row:hover {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    transform: scale(1.005);
+    box-shadow: inset 0 0 0 2px var(--primary-blue);
+}
+
+.job-table-cell {
+    padding: 1.5rem 1rem;
+    vertical-align: top;
+    border-right: 1px solid var(--border-light);
+}
+
+.job-table-cell:last-child {
+    border-right: none;
+}
+
+/* Job Info Cell */
+.job-info-cell {
+    min-width: 300px;
+}
+
+.job-info {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.company-logo-small {
+    width: 48px;
+    height: 48px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 2px solid white;
+    box-shadow: var(--shadow-light);
+    flex-shrink: 0;
+}
+
+.job-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.job-title-table {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+    transition: color var(--transition-normal);
+}
+
+.job-table-row:hover .job-title-table {
+    color: var(--primary-blue);
+}
+
+.company-name {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.job-badges-table {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+}
+
+.badge.small {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    border-radius: 12px;
+}
+
+/* Location Cell */
+.location-cell {
+    min-width: 150px;
+}
+
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Type Cell */
+.type-cell {
+    min-width: 120px;
+}
+
+.type-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.job-type {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.experience-level {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Salary Cell */
+.salary-cell {
+    min-width: 150px;
+}
+
+.salary-info-table {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-green);
+    font-weight: 700;
+}
+
+.salary-details {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Skills Cell */
+.skills-cell {
+    min-width: 200px;
+}
+
+.skills-table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+}
+
+.skill-tag-small {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    color: #1d4ed8;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: 1px solid #bfdbfe;
+    white-space: nowrap;
+}
+
+.skill-tag-small.more {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    border-color: var(--border-medium);
+}
+
+.no-skills {
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+/* Stats Cell */
+.stats-cell {
+    min-width: 100px;
+}
+
+.stats-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-item-small {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Date Cell */
+.date-cell {
+    min-width: 120px;
+}
+
+.date-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Actions Cell */
+.actions-cell {
+    min-width: 140px;
+}
+
+.table-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.apply-btn-small {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.apply-btn-small:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.deadline-small {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--accent-red);
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: #fef2f2;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid #fecaca;
+}
+
+/* Empty State */
+.JoLiEmptyState {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-medium);
+    border: 2px dashed var(--border-light);
+    margin: 2rem 0;
+}
+
+.JoLiEmptyStateIcon {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+.JoLiEmptyState h3 {
+    font-size: 1.75rem;
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+}
+
+.JoLiEmptyState p {
+    margin: 0 0 2rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.JoLiEmptyStateClearFiltersButton {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-medium);
+}
+
+.JoLiEmptyStateClearFiltersButton:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-heavy);
+}
+
+/* Pagination - Enhanced */
+.JoLiPaginationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 4rem;
+    padding: 2rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-light);
+}
+
+.JoLiPaginationControls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.JoLiPaginationButton {
+    padding: 0.875rem 1.5rem;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.875rem;
+}
+
+.JoLiPaginationButton:hover:not(:disabled) {
+    background: var(--gradient-primary);
+    border-color: var(--primary-blue);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.JoLiPaginationButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.JoLiPaginationNumbers {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.JoLiPaginationNumberButton {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-size: 0.9rem;
+}
+
+.JoLiPaginationNumberButton:hover {
+    background: var(--gradient-primary);
+    border-color: var(--primary-blue);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.JoLiPaginationNumberButton.active {
+    background: var(--gradient-primary);
+    border-color: var(--primary-blue);
+    color: white;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.JoLiPaginationInfo {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.JoLiPaginationInfo::before {
+    content: '📄';
+    font-size: 1.1rem;
+}
+
+/* Animations */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+    }
+    50% {
+        opacity: 0.9;
+        box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
+    }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+/* Responsive Design - Enhanced */
+@media (max-width: 1400px) {
+    .jobs-container {
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    }
+}
+
+@media (max-width: 1200px) {
+    .jobs-container {
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .job-card {
+        height: 560px;
+    }
+
+    .jobs-table-container {
+        overflow-x: auto;
+    }
+
+    .jobs-table {
+        min-width: 1000px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .JoLiLayoutContainer {
+        padding: 1.5rem;
+    }
+
+    .jobs-container {
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    }
+
+    .job-card {
+        height: 540px;
+    }
+
+    .JoLiHeroStats {
+        gap: 2rem;
+    }
+
+    .jobs-table {
+        font-size: 0.85rem;
+    }
+
+    .jobs-table-header-cell,
+    .job-table-cell {
+        padding: 1rem 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .JoLiHeroTitle {
+        font-size: 2.25rem;
+    }
+
+    .JoLiHeroSubtitle {
+        font-size: 1rem;
+    }
+
+    .JoLiHeroStats {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .JoLiLayoutContainer {
+        padding: 1rem;
+    }
+
+    .JoLiSearchFilterSection {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .JoLiSearchContainer {
+        min-width: auto;
+    }
+
+    .JoLiFiltersGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .jobs-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .job-card {
+        height: 520px;
+        margin: 0;
+    }
+
+    .job-card-content {
+        padding: 1.5rem;
+    }
+
+    .meta-row {
+        gap: 1rem;
+    }
+
+    .engagement-stats {
+        gap: 1rem;
+    }
+
+    .JoLiCheckboxGroup {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .JoLiPaginationControls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Table becomes stacked cards on mobile */
+    .jobs-table-container {
+        display: none;
+    }
+
+    .jobs-container.mobile-stack {
+        display: block;
+    }
+
+    .job-card.table-mobile {
+        height: auto;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .JoLiHero {
+        padding: 2.5rem 0 2rem;
+    }
+
+    .JoLiHeroContent {
+        padding: 0 1rem;
+    }
+
+    .JoLiHeroStats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .JoLiHeroStatItem {
+        min-width: 200px;
+    }
+
+    .JoLiSearchFilterSection {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    .jobs-container {
+        gap: 1rem;
+    }
+
+    .job-card {
+        height: 500px;
+        border-radius: var(--radius-lg);
+    }
+
+    .job-card-content {
+        padding: 1.25rem;
+    }
+
+    .job-title {
+        font-size: 1.2rem;
+    }
+
+    .job-description {
+        font-size: 0.9rem;
+    }
+
+    .engagement-stats {
+        justify-content: center;
+    }
+
+    .apply-btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .job-card {
+        height: 480px;
+        margin: 0 -0.5rem;
+    }
+
+    .job-card-image-container {
+        height: 160px;
+    }
+
+    .job-badges {
+        flex-direction: row;
+        gap: 0.375rem;
+    }
+
+    .badge {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.7rem;
+    }
+
+    .job-type-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .engagement-stats {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .JoLiPaginationNumbers {
+        gap: 0.25rem;
+    }
+
+    .JoLiPaginationNumberButton {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Focus Styles for Accessibility - Enhanced */
+.job-card:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 4px;
+    transform: translateY(-4px);
+}
+
+.JoLiSearchInput:focus-visible,
+.JoLiFilterSelect:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+.JoLiFilterCheckboxInput:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+    transform: scale(1.1);
+}
+
+.JoLiFilterToggle:focus-visible,
+.JoLiViewButton:focus-visible,
+.JoLiPaginationButton:focus-visible,
+.JoLiPaginationNumberButton:focus-visible,
+.apply-btn:focus-visible,
+.apply-btn-small:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+.job-table-row:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .job-card:hover {
+        transform: none;
+    }
+
+    .badge.urgent {
+        animation: none;
+    }
+
+    .JoLiHero::before {
+        animation: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+    .job-card,
+    .JoLiSearchFilterSection,
+    .JoLiFiltersPanel,
+    .jobs-table-container {
+        border: 2px solid currentColor;
+    }
+
+    .badge,
+    .job-skill {
+        border: 1px solid currentColor;
+        background: Canvas;
+        color: CanvasText;
+    }
+
+    .apply-btn,
+    .apply-btn-small {
+        background: ButtonFace;
+        color: ButtonText;
+        border: 1px solid ButtonText;
+    }
+}
+
+/* Print Styles - Enhanced */
+@media print {
+    .JoLiPageWrapper {
+        background: white;
+    }
+
+    .JoLiPageWrapper::before {
+        display: none;
+    }
+
+    .job-card {
+        box-shadow: none;
+        border: 1px solid #000;
+        break-inside: avoid;
+        margin-bottom: 1rem;
+        height: auto;
+        transform: none;
+    }
+
+    .job-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .job-card:hover::before {
+        display: none;
+    }
+
+    .JoLiHero,
+    .JoLiSearchFilterSection,
+    .JoLiFiltersPanel,
+    .JoLiPaginationContainer,
+    .apply-btn,
+    .apply-btn-small {
+        display: none;
+    }
+
+    .job-badges,
+    .job-type-badge {
+        position: static;
+        display: inline-flex;
+        margin: 0.5rem 0;
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
+
+    .job-card-image-container {
+        height: 150px;
+    }
+
+    .job-title {
+        color: #000;
+        font-size: 1.1rem;
+    }
+
+    .job-description {
+        color: #333;
+        font-size: 0.85rem;
+    }
+
+    .jobs-table {
+        font-size: 0.8rem;
+    }
+
+    .jobs-table-header-cell,
+    .job-table-cell {
+        padding: 0.5rem;
+    }
+}
+
+/* Performance Optimizations */
+.job-card-image,
+.job-card:hover .job-card-image {
+    will-change: transform;
+}
+
+.job-card {
+    will-change: transform, box-shadow;
+}
+
+.badge.urgent {
+    will-change: opacity, box-shadow;
+}
+
+.job-table-row {
+    will-change: background-color, transform;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 4px;
+    transition: background var(--transition-normal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-blue);
+}
+
+/* Table Horizontal Scroll */
+.jobs-table-container::-webkit-scrollbar {
+    height: 12px;
+}
+
+.jobs-table-container::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 6px;
+}
+
+.jobs-table-container::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 6px;
+}
+
+/* Loading States for Table */
+.jobs-table.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.jobs-table.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 4px solid var(--border-light);
+    border-top: 4px solid var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}/* Professional Job List Styles - Enhanced CNN-inspired Design */
+
+:root {
+    --primary-blue: #3b82f6;
+    --primary-blue-dark: #2563eb;
+    --primary-blue-darker: #1d4ed8;
+    --accent-green: #10b981;
+    --accent-green-dark: #059669;
+    --accent-orange: #f59e0b;
+    --accent-red: #dc2626;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 16px 40px rgba(0, 0, 0, 0.15);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+    --gradient-primary: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-darker) 100%);
+    --gradient-surface: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+}
+
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --text-light: #64748b;
+        --bg-primary: #1e293b;
+        --bg-secondary: #0f172a;
+        --bg-tertiary: #334155;
+        --border-light: #334155;
+        --border-medium: #475569;
+        --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.3);
+        --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.3);
+        --shadow-heavy: 0 16px 40px rgba(0, 0, 0, 0.4);
+        --gradient-surface: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+}
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
+
+.JoLiPageWrapper {
+    min-height: 100vh;
+    background: var(--bg-secondary);
+    transition: all var(--transition-slow);
+    position: relative;
+}
+
+.JoLiPageWrapper::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Loading and Error States */
+.JoLiLoadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 1.5rem;
+    color: var(--text-muted);
+}
+
+.JoLiLoadingSpinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--border-light);
+    border-top: 4px solid var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.2));
+}
+
+.JoLiErrorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    margin: 2rem;
+    box-shadow: var(--shadow-medium);
+}
+
+.JoLiErrorIcon {
+    font-size: 4rem;
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.JoLiErrorContainer h3 {
+    color: var(--accent-red);
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.JoLiErrorContainer p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 1rem;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.JoLiRetryButton {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.JoLiRetryButton:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Hero Section - Enhanced Business Style */
+.JoLiHero {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    padding: 4rem 0 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--primary-blue);
+}
+
+.JoLiHero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+    animation: heroFloat 20s ease-in-out infinite;
+}
+
+.JoLiHero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg,
+    var(--primary-blue) 0%,
+    var(--accent-green) 25%,
+    var(--primary-blue) 50%,
+    var(--accent-green) 75%,
+    var(--primary-blue) 100%);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.JoLiHeroContent {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.JoLiHeroTitle {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    animation: slideInUp 0.8s ease-out;
+}
+
+.JoLiHeroSubtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    opacity: 0.95;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    color: rgba(203, 213, 225, 0.95);
+    animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.JoLiHeroStats {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    margin-top: 2rem;
+    animation: slideInUp 0.8s ease-out 0.4s both;
+}
+
+.JoLiHeroStatItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+}
+
+.JoLiHeroStatItem:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.JoLiHeroStatNumber {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.JoLiHeroStatLabel {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(203, 213, 225, 0.9);
+    font-weight: 600;
+}
+
+/* Main Container */
+.JoLiLayoutContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Search and Filter Section - Enhanced */
+.JoLiSearchFilterSection {
+    background: var(--gradient-surface);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-light);
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: 4px solid var(--primary-blue);
+    position: relative;
+    overflow: hidden;
+}
+
+.JoLiSearchFilterSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(59, 130, 246, 0.02) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.JoLiSearchContainer {
+    position: relative;
+    flex: 1;
+    min-width: 320px;
+}
+
+.JoLiSearchIcon {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    width: 20px;
+    height: 20px;
+    transition: color var(--transition-normal);
+    z-index: 2;
+}
+
+.JoLiSearchInput {
+    width: 100%;
+    padding: 1rem 1.25rem 1rem 3.5rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.JoLiSearchInput::placeholder {
+    color: var(--text-light);
+}
+
+.JoLiSearchInput:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1), inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+}
+
+.JoLiSearchInput:focus + .JoLiSearchIcon {
+    color: var(--primary-blue);
+}
+
+.JoLiFilterControls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.JoLiFilterToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    white-space: nowrap;
+    position: relative;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-light);
+}
+
+.JoLiFilterToggle:hover {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.JoLiFilterToggle.active {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.JoLiFilterBadge {
+    background: var(--accent-orange);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.25rem;
+    animation: pulse 2s infinite;
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.JoLiChevronIcon {
+    transition: transform var(--transition-normal);
+}
+
+.JoLiChevronIcon.rotated {
+    transform: rotate(180deg);
+}
+
+.JoLiViewControls {
+    display: flex;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+.JoLiViewButton {
+    padding: 1rem;
+    background: var(--bg-primary);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.JoLiViewButton:hover {
+    background: var(--bg-tertiary);
+}
+
+.JoLiViewButton.active {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* Advanced Filters Panel - Enhanced */
+.JoLiFiltersPanel {
+    background: var(--gradient-surface);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-light);
+    border-top: 4px solid var(--primary-blue);
+    animation: slideDown 0.4s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.JoLiFiltersPanel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(59, 130, 246, 0.01) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.JoLiFiltersHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-light);
+    position: relative;
+}
+
+.JoLiFiltersHeader h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.JoLiFiltersHeader h3::before {
+    content: '⚡';
+    font-size: 1.5rem;
+}
+
+.JoLiClearAllFiltersButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    color: var(--accent-red);
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.JoLiClearAllFiltersButton:hover {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-light);
+}
+
+.JoLiFiltersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}

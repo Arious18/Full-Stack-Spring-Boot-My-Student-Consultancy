@@ -18,7 +18,7 @@ function FieldsGrid() {
                 setLoading(true);
 
                 // Fetch faculties for name lookup
-                const facultiesResponse = await fetch('https://deneme5-g63n.onrender.com/faculties');
+                const facultiesResponse = await fetch('http://localhost:8080/faculties');
                 if (!facultiesResponse.ok) {
                     throw new Error(`Failed to fetch faculties: ${facultiesResponse.status}`);
                 }
@@ -27,8 +27,8 @@ function FieldsGrid() {
 
                 // Fetch fields (either all or for a specific faculty)
                 let fieldsUrl = facultyId
-                    ? `https://deneme5-g63n.onrender.com/fields/faculty/${facultyId}`
-                    : 'https://deneme5-g63n.onrender.com/fields';
+                    ? `http://localhost:8080/fields/faculty/${facultyId}`
+                    : 'http://localhost:8080/fields';
                 console.log('Fetching fields from:', fieldsUrl);
                 const fieldsResponse = await fetch(fieldsUrl);
                 if (!fieldsResponse.ok) {
@@ -41,12 +41,7 @@ function FieldsGrid() {
                     throw new Error('Invalid fields data format');
                 }
 
-                const formattedFields = fieldsData.map(field => ({
-                    ...field,
-                    imageUrl: field.imageUrl || 'https://pub-cab830fe342c4f9480be11e8b3347409.r2.dev/my-data/error.jpeg'
-                }));
-
-                setFields(formattedFields);
+                setFields(fieldsData);
                 setError(null);
             } catch (err) {
                 console.error('Error fetching data:', err);
@@ -56,7 +51,7 @@ function FieldsGrid() {
             }
         };
 
-        fetchData(); // Always fetch data, regardless of facultyId
+        fetchData();
     }, [facultyId]);
 
     const getFacultyName = (facultyId) => {
@@ -74,74 +69,113 @@ function FieldsGrid() {
             if (currentFaculty && currentFaculty.universityId) {
                 navigate(`/faculties/${currentFaculty.universityId}`);
             } else {
-                navigate('/university'); // Fallback
+                navigate('/university');
             }
         } else {
-            navigate('/university'); // If no facultyId, go to universities list
+            navigate('/university');
         }
     };
 
+    const formatPrice = (price) => {
+        if (price === undefined || price === null) return '0';
+        return price.toLocaleString();
+    };
+
+    const getDisplayPrice = (field) => {
+        // If there's a discount price and it's less than the regular price, use it
+        if (field.discountPrice && field.discountPrice < field.price) {
+            return field.discountPrice;
+        }
+        return field.price;
+    };
+
     return (
-        <div className="fld-cards-list-container">
-            <header className="fld-cards-header">
-                <div className="fld-header-content">
-                    <h1 className="fld-main-title">
+        <div className="FiGr-cards-list-container">
+            <header className="FiGr-cards-header">
+                <div className="FiGr-header-content">
+                    <h1 className="FiGr-main-title">
                         {facultyId ? `Fields of ${getFacultyName(facultyId)}` : 'All Fields'}
                     </h1>
-                    <button className="fld-see-more-btn" onClick={handleBackToFaculties}>
+                    <button className="FiGr-see-more-btn" onClick={handleBackToFaculties}>
                         Back to {facultyId ? 'Faculties' : 'Universities'}
                     </button>
                 </div>
             </header>
 
-            <div className="fld-component-container">
-                <h2 className="fld-section-title">Available Fields</h2>
+            <div className="FiGr-component-container">
+                <h2 className="FiGr-section-title">Available Fields</h2>
 
                 {loading && (
-                    <div className="fld-loading">
+                    <div className="FiGr-loading">
                         <p>Loading fields...</p>
                     </div>
                 )}
 
                 {error && (
-                    <div className="fld-error">
+                    <div className="FiGr-error">
                         <p>{error}</p>
                     </div>
                 )}
 
                 {!loading && !error && (
-                    <div className="fld-cards-grid">
+                    <div className="FiGr-cards-grid">
                         {fields.map(field => (
-                            <div key={field.id} className="fld-card">
-                                <div className="fld-card-image-container">
-                                    <img
-                                        src={field.imageUrl}
-                                        alt={field.name}
-                                        className="fld-card-image"
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            e.target.src = 'https://pub-cab830fe342c4f9480be11e8b3347409.r2.dev/my-data/error.jpeg';
-                                        }}
-                                    />
-                                </div>
-                                <div className="fld-card-content">
-                                    <h3 className="fld-card-title">{field.name}</h3>
-                                    <p className="fld-card-faculty">
-                                        Faculty: {getFacultyName(field.facultyId)}
-                                    </p>
-                                    <p className="fld-card-description">{field.description}</p>
-                                    {field.price !== undefined && (
-                                        <div className="fld-card-price">
-                                            <span className="fld-price-label">Price:</span>
-                                            <span className="fld-price-value">${field.price.toLocaleString()}</span>
+                            <div key={field.id} className="FiGr-card">
+                                <div className="FiGr-card-content">
+                                    <h3 className="FiGr-card-title">{field.name}</h3>
+
+                                    <div className="FiGr-info-items">
+                                        {/* Deposit */}
+                                        <div className="FiGr-info-item">
+                                            <svg className="FiGr-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                            </svg>
+                                            <span className="FiGr-info-label">
+                                                Depozit: {formatPrice(field.deposit)}$
+                                            </span>
                                         </div>
-                                    )}
-                                    <button
-                                        className="fld-learn-more-btn"
-                                        onClick={() => navigate('/apply')}
-                                    >
-                                        Apply Now
-                                    </button>
+
+                                        {/* Language */}
+                                        <div className="FiGr-info-item">
+                                            <svg className="FiGr-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                            </svg>
+                                            <span className="FiGr-info-label">
+                                                {field.language || 'Turkish'}  %{field.languagePercentage || 100}
+                                            </span>
+                                        </div>
+
+                                        {/* Duration */}
+                                        <div className="FiGr-info-item">
+                                            <svg className="FiGr-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polyline points="12 6 12 12 16 14"></polyline>
+                                            </svg>
+                                            <span className="FiGr-info-label">
+                                                {field.duration || 4} Yıl
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className="FiGr-action-section">
+                                        <div className="FiGr-price-display">
+                                            {field.discountPrice && field.discountPrice < field.price ? (
+                                                <>
+                                                    <span className="FiGr-original-price">
+                                                        {formatPrice(field.price)},00 $
+                                                    </span>
+                                                    {formatPrice(field.discountPrice)},00 $
+                                                </>
+                                            ) : (
+                                                `${formatPrice(field.price)},00 $`
+                                            )}
+                                        </div>
+                                        <button className="FiGr-apply-btn" onClick={() => navigate('/apply')}>
+                                            ŞİMDİ BAŞVUR
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -149,7 +183,7 @@ function FieldsGrid() {
                 )}
 
                 {!loading && !error && fields.length === 0 && (
-                    <div className="fld-no-results">
+                    <div className="FiGr-no-results">
                         <p>No fields found{facultyId ? ' for this faculty' : ''}.</p>
                     </div>
                 )}

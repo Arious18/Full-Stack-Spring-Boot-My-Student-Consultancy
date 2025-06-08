@@ -39,13 +39,13 @@ function Footer() {
                     <div className="foot-footer-section">
                         <h3 className="foot-section-title">Quick Links</h3>
                         <ul className="foot-link-list">
-                            <li><a href="#" className="foot-footer-link">About Us</a></li>
-                            <li><a href="#" className="foot-footer-link">Services</a></li>
-                            <li><a href="#" className="foot-footer-link">Products</a></li>
+                            <li><a href="aboutUs" className="foot-footer-link">About Us</a></li>
+                            <li><a href="services" className="foot-footer-link">Services</a></li>
+
                             <li> <a onClick={() => navigate('/AdminDashboard')} className="foot-footer-link"></a>
                         </li>
                             <li><a href="#" className="foot-footer-link">Blog</a></li>
-                                <li><a href="#" className="foot-footer-link">Contact</a></li>
+                                <li><a href="contact" className="foot-footer-link">Contact</a></li>
                         </ul>
                     </div>
 
@@ -54,10 +54,10 @@ function Footer() {
                         <h3 className="foot-section-title">Support</h3>
                         <ul className="foot-link-list">
                             <li><a href="#" className="foot-footer-link">Help Center</a></li>
-                            <li><a href="#" className="foot-footer-link">Privacy Policy</a></li>
+                            <li><a href="privacyPolicy" className="foot-footer-link">Privacy Policy</a></li>
                             <li><a href="#" className="foot-footer-link">Terms of Service</a></li>
                             <li><a href="#" className="foot-footer-link">FAQ</a></li>
-                            <li><a href="#" className="foot-footer-link">Shipping Info</a></li>
+
                         </ul>
                     </div>
 

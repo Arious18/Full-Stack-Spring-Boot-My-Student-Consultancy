@@ -4,6 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,15 +14,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import tmtalyp.backend.Auth.user.UserService;
 
 import java.io.IOException;
-import java.util.List;
 
-// Removed @Component annotation
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private static final List<String> PUBLIC_ENDPOINTS = List.of(
-            "/auth/**",          // Existing auth endpoints
-            "/faculties",        // Add public endpoints here
-            "/universities"      // Add other public endpoints
-    );
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+
     private final JwtUtil jwtUtil;
     private final UserService userService;
 
@@ -34,54 +31,87 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        // Skip authentication for public endpoints
         String requestURI = request.getRequestURI();
-        if (PUBLIC_ENDPOINTS.stream().anyMatch(requestURI::startsWith)) {
+        String method = request.getMethod();
+        logger.debug("Processing request: {} {}", method, requestURI);
+
+        // Skip token validation for OPTIONS requests
+        if (method.equals("OPTIONS")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // Skip auth for public endpoints
+        if (isPublicEndpoint(requestURI, method)) {
             filterChain.doFilter(request, response);
             return;
         }
 
         try {
             String authHeader = request.getHeader("Authorization");
+            logger.debug("Authorization header: {}", authHeader);
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                logger.debug("No JWT token found in request headers");
+                logger.debug("No JWT token found in request");
                 filterChain.doFilter(request, response);
                 return;
             }
 
             String jwt = authHeader.substring(7);
             String email = jwtUtil.getEmailFromToken(jwt);
-
-            logger.debug("JWT token found, email extracted: " + email);
+            logger.debug("Extracted email from token: {}", email);
 
             if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                try {
-                    UserDetails userDetails = userService.loadUserByUsername(email);
-                    logger.debug("User details loaded for email: " + email);
+                UserDetails userDetails = userService.loadUserByUsername(email);
+                logger.debug("User loaded: {}, authorities: {}", userDetails.getUsername(), userDetails.getAuthorities());
 
-                    if (jwtUtil.validateToken(jwt)) {
-                        UsernamePasswordAuthenticationToken authToken =
-                                new UsernamePasswordAuthenticationToken(
-                                        userDetails,
-                                        null,
-                                        userDetails.getAuthorities()
-                                );
-
-                        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                        SecurityContextHolder.getContext().setAuthentication(authToken);
-                        logger.debug("Authentication set in SecurityContext for user: " + email);
-                    } else {
-                        logger.debug("Token validation failed for email: " + email);
-                    }
-                } catch (Exception e) {
-                    logger.error("Error loading user by email: " + email, e);
+                if (jwtUtil.validateToken(jwt)) {
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                            userDetails, null, userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    logger.debug("Authentication set successfully for user: {} with authorities: {}",
+                            email, userDetails.getAuthorities());
+                } else {
+                    logger.warn("Token validation failed for: {}", email);
                 }
             }
         } catch (Exception e) {
-            logger.error("Cannot set user authentication: " + e.getMessage(), e);
+            logger.error("Authentication error: {}", e.getMessage(), e);
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private boolean isPublicEndpoint(String requestURI, String method) {
+        // Auth endpoints
+        if (requestURI.startsWith("/auth/login") ||
+                requestURI.startsWith("/auth/register") ||
+                requestURI.startsWith("/auth/setup-admin")) {
+            return true;
+        }
+
+        // Debug and health endpoints
+        if (requestURI.startsWith("/debug") ||
+                requestURI.startsWith("/api/health") ||
+                requestURI.startsWith("/api/test")) {
+            return true;
+        }
+
+        // Countries and dashboard
+        if (requestURI.startsWith("/countries") ||
+                requestURI.equals("/dashboard")) {
+            return true;
+        }
+
+        // Only GET methods are public for universities, faculties, fields, and heroes
+        if (method.equals("GET")) {
+            return requestURI.startsWith("/universities") ||
+                    requestURI.startsWith("/faculties") ||
+                    requestURI.startsWith("/fields") ||
+                    requestURI.startsWith("/api/heroes");
+        }
+
+        return false;
     }
 }

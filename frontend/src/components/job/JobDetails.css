@@ -1,0 +1,1730 @@
+/* Professional Job Detail Page Styles */
+
+/* CSS Variables */
+:root {
+    --primary-blue: #2563eb;
+    --primary-blue-hover: #1d4ed8;
+    --primary-blue-light: #eff6ff;
+    --secondary-gray: #64748b;
+    --border-color: #e2e8f0;
+    --bg-gray: #f8fafc;
+    --success-green: #10b981;
+    --warning-orange: #f59e0b;
+    --error-red: #ef4444;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+}
+
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+.JoDeWrapper {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-gray) 0%, #f1f5f9 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+/* Loading States */
+.JoDeLoadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.JoDeLoadingSpinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.JoDeLoadingContent {
+    text-align: center;
+    max-width: 400px;
+}
+
+.JoDeLoadingContent h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.JoDeLoadingContent p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Error States */
+.JoDeErrorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 2rem;
+}
+
+.JoDeErrorContent {
+    text-align: center;
+    max-width: 500px;
+    background: var(--white);
+    padding: 3rem 2rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+.JoDeErrorIcon {
+    color: var(--error-red);
+    margin-bottom: 1.5rem;
+}
+
+.JoDeErrorContent h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.JoDeErrorContent p {
+    margin: 0 0 2rem 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.JoDeErrorActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Button Styles */
+.JoDeButtonPrimary,
+.JoDeButtonSecondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    white-space: nowrap;
+}
+
+.JoDeButtonPrimary {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.JoDeButtonPrimary:hover {
+    background: var(--primary-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.JoDeButtonSecondary {
+    background: var(--white);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.JoDeButtonSecondary:hover {
+    background: var(--bg-gray);
+    border-color: var(--secondary-gray);
+    color: var(--text-primary);
+}
+
+/* Header Section */
+.JoDeHeader {
+    background: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.JoDeHeaderContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.JoDeHeaderNavigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.JoDeBackButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    transition: all 0.2s ease;
+}
+
+.JoDeBackButton:hover {
+    color: var(--primary-blue-hover);
+    gap: 0.75rem;
+}
+
+.JoDeHeaderMeta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.JoDeJobHeaderContent {
+    padding: 2rem 0;
+}
+
+.JoDeJobHeaderMain {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* Company Section */
+.JoDeCompanySection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.JoDeCompanyLogo {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, #f1f5f9 100%);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    border: 2px solid var(--border-color);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.JoDeCompanyLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.JoDeCompanyInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.JoDeCompanyName {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.JoDeCompanyMeta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.JoDeCompanyMeta span:last-child {
+    color: var(--primary-blue);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.JoDeCompanyMeta span:last-child:hover {
+    text-decoration: underline;
+}
+
+/* Job Title Section */
+.JoDeJobTitleSection {
+    flex: 1;
+    min-width: 0;
+}
+
+.JoDeTitleHeader {
+    margin-bottom: 1.5rem;
+}
+
+.JoDeJobTitle {
+    margin: 0 0 1rem 0;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+.JoDeJobBadges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.JoDeBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.JoDeBadge.featured {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: var(--white);
+    box-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+}
+
+.JoDeBadge.urgent {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: var(--white);
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.JoDeBadge.warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: var(--white);
+    box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+.JoDeBadge.remote {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: var(--white);
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.JoDeBadge.negotiable {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: var(--white);
+    box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+}
+
+.JoDeJobMetaGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.JoDeMetaItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.JoDeMetaItem svg {
+    color: var(--primary-blue);
+    flex-shrink: 0;
+}
+
+/* Job Actions Section */
+.JoDeJobActionsSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+    min-width: 280px;
+}
+
+.JoDeSalaryContainer {
+    text-align: right;
+}
+
+.JoDeSalaryDisplay {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    color: var(--success-green);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.JoDeSalaryDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.JoDeSalaryPeriod {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.JoDeBenefitsPreview {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.JoDeActionButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.JoDeSecondaryActions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.JoDeIconButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.JoDeIconButton:hover {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.JoDeIconButton.active {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+/* Share Dropdown */
+.JoDeShareDropdown {
+    position: relative;
+}
+
+.JoDeShareMenu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 200;
+    min-width: 160px;
+    overflow: hidden;
+}
+
+.JoDeShareOption {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.JoDeShareOption:hover {
+    background: var(--bg-gray);
+    color: var(--text-primary);
+}
+
+.JoDeApplyButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    width: 100%;
+}
+
+.JoDeApplyButton.primary {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.JoDeApplyButton.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+}
+
+.JoDeApplyButton.disabled {
+    background: var(--secondary-gray);
+    color: var(--white);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Deadline Alert */
+.JoDeDeadlineAlert {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    border-left: 4px solid;
+}
+
+.JoDeDeadlineAlert.info {
+    background: var(--primary-blue-light);
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.JoDeDeadlineAlert.warning {
+    background: #fef3c7;
+    color: #d97706;
+    border-color: var(--warning-orange);
+}
+
+.JoDeDeadlineAlert.urgent {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: var(--error-red);
+}
+
+/* Main Content */
+.JoDeContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.JoDeContent {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    align-items: start;
+}
+
+/* Content Sections */
+.JoDeJobMainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.JoDeContentSection {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.JoDeContentSection:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
+}
+
+.JoDeSectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.JoDeSectionHeader h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.JoDeSectionHeader h2 svg {
+    color: var(--primary-blue);
+}
+
+.JoDeSkillCount,
+.JoDeBenefitCount {
+    background: var(--primary-blue-light);
+    color: var(--primary-blue);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.JoDeSectionContent {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Rich Content */
+.JoDeRichContent p {
+    margin: 0 0 1.5rem 0;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.JoDeRichContent p:last-child {
+    margin-bottom: 0;
+}
+
+.JoDeRequirementItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: var(--bg-gray);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--success-green);
+}
+
+.JoDeRequirementItem svg {
+    color: var(--success-green);
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+.JoDeRequirementItem:last-child {
+    margin-bottom: 0;
+}
+
+/* Empty State */
+.JoDeEmptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.JoDeEmptyState svg {
+    color: var(--secondary-gray);
+    opacity: 0.5;
+}
+
+/* Skills Grid */
+.JoDeSkillsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+}
+
+.JoDeSkillTag {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, #f1f5f9 100%);
+    color: var(--primary-blue);
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #bfdbfe;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+.JoDeSkillTag:hover {
+    background: linear-gradient(135deg, #dbeafe 0%, var(--primary-blue-light) 100%);
+    border-color: var(--primary-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.15);
+}
+
+/* Benefits Grid */
+.JoDeBenefitsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.JoDeBenefitCard {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--bg-gray);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.JoDeBenefitCard:hover {
+    background: var(--white);
+    border-color: var(--success-green);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.15);
+}
+
+.JoDeBenefitCard svg {
+    color: var(--success-green);
+    flex-shrink: 0;
+}
+
+.JoDeBenefitCard span {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Benefits Section */
+.JoDeBenefitsSection {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    border: 1px solid #bbf7d0;
+}
+
+/* Application Section */
+.JoDeApplicationSection {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, #f0f9ff 100%);
+    border: 1px solid #bfdbfe;
+}
+
+.JoDeApplicationSteps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.JoDeApplicationMethod {
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.JoDeApplicationMethod.primary {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1);
+}
+
+.JoDeMethodHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.JoDeMethodHeader h4 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.JoDeRecommended {
+    background: var(--success-green);
+    color: var(--white);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.JoDeApplicationMethod p {
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.JoDeApplicationLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid;
+}
+
+.JoDeApplicationLink.primary {
+    background: var(--primary-blue);
+    color: var(--white);
+    border-color: var(--primary-blue);
+}
+
+.JoDeApplicationLink.primary:hover {
+    background: var(--primary-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.JoDeApplicationLink.secondary {
+    background: var(--white);
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.JoDeApplicationLink.secondary:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.JoDeContactNotice {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f59e0b;
+    color: var(--white);
+    border-radius: var(--radius-lg);
+}
+
+.JoDeContactNotice h4 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+}
+
+.JoDeContactNotice p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Sidebar */
+.JoDeJobSidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.JoDeSidebarCard {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.JoDeSidebarCard:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
+}
+
+.JoDeSidebarTitle {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* Detail List */
+.JoDeDetailList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.JoDeDetailItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.JoDeDetailItem svg {
+    color: var(--primary-blue);
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+}
+
+.JoDeDetailItem > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.JoDeDetailItem .JoDeDetailItemLabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.JoDeDetailItem .JoDeDetailItemValue {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-word;
+}
+
+/* Company Profile */
+.JoDeCompanyProfile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.JoDeCompanyAvatar {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, #f1f5f9 100%);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    border: 2px solid var(--border-color);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.JoDeCompanyAvatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.JoDeCompanyDetails {
+    flex: 1;
+    min-width: 0;
+}
+
+.JoDeCompanyDetails h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.JoDeCompanyIndustry {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.JoDeViewCompanyLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--primary-blue);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.JoDeViewCompanyLink:hover {
+    color: var(--primary-blue-hover);
+    gap: 0.5rem;
+}
+
+/* Related Jobs */
+.JoDeRelatedJobsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.JoDeRelatedJobCard {
+    padding: 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--white);
+}
+
+.JoDeRelatedJobCard:hover {
+    border-color: var(--primary-blue);
+    background: var(--primary-blue-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.JoDeRelatedJobHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+}
+
+.JoDeRelatedJobHeader h5 {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    flex: 1;
+}
+
+.JoDeRelatedJobDate {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.JoDeRelatedJobMeta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Stats Card */
+.JoDeStatsCard {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, #f0f9ff 100%);
+    border: 1px solid #bfdbfe;
+}
+
+.JoDeStatsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.JoDeStatItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.JoDeStatItem svg {
+    color: var(--primary-blue);
+}
+
+.JoDeStatItem > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.JoDeStatValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.JoDeStatLabel {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Animations */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.JoDeContentSection {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.JoDeSidebarCard {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.JoDeJobHeaderContent {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .JoDeContent {
+        grid-template-columns: 1fr 320px;
+        gap: 2rem;
+    }
+
+    .JoDeJobHeaderMain {
+        grid-template-columns: auto 1fr;
+        gap: 2rem;
+    }
+
+    .JoDeJobActionsSection {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.5rem;
+        min-width: unset;
+    }
+
+    .JoDeSalaryContainer {
+        text-align: left;
+    }
+
+    .JoDeActionButtons {
+        flex-direction: row;
+        width: auto;
+        align-items: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .JoDeContent {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .JoDeJobSidebar {
+        order: -1;
+    }
+
+    .JoDeHeaderContainer {
+        padding: 0 1.5rem;
+    }
+
+    .JoDeContainer {
+        padding: 2rem 1.5rem;
+    }
+
+    .JoDeJobMetaGrid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .JoDeSkillsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .JoDeBenefitsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .JoDeStatsGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .JoDeHeaderContainer {
+        padding: 0 1rem;
+    }
+
+    .JoDeContainer {
+        padding: 1.5rem 1rem;
+    }
+
+    .JoDeJobHeaderMain {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .JoDeCompanySection {
+        justify-content: center;
+    }
+
+    .JoDeJobTitle {
+        font-size: 1.75rem;
+    }
+
+    .JoDeJobMetaGrid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        justify-items: center;
+    }
+
+    .JoDeJobActionsSection {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .JoDeSalaryDisplay {
+        font-size: 1.25rem;
+        justify-content: center;
+    }
+
+    .JoDeActionButtons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .JoDeSecondaryActions {
+        justify-content: center;
+    }
+
+    .JoDeContentSection {
+        padding: 2rem 1.5rem;
+    }
+
+    .JoDeSidebarCard {
+        padding: 1.5rem;
+    }
+
+    .JoDeHeaderNavigation {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .JoDeHeaderMeta {
+        font-size: 0.625rem;
+        gap: 1rem;
+    }
+
+    .JoDeDeadlineAlert {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .JoDeApplicationSteps {
+        gap: 1rem;
+    }
+
+    .JoDeApplicationMethod {
+        padding: 1.25rem;
+    }
+
+    .JoDeMethodHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .JoDeJobTitle {
+        font-size: 1.5rem;
+    }
+
+    .JoDeCompanySection {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .JoDeJobBadges {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .JoDeBadge {
+        font-size: 0.625rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .JoDeContentSection {
+        padding: 1.5rem 1rem;
+    }
+
+    .JoDeSectionHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .JoDeSkillsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .JoDeSkillTag {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    .JoDeDetailList {
+        gap: 1rem;
+    }
+
+    .JoDeDetailItem {
+        gap: 0.75rem;
+    }
+
+    .JoDeCompanyProfile {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+
+    .JoDeShareMenu {
+        left: 0;
+        right: auto;
+        min-width: 140px;
+    }
+
+    .JoDeApplyButton {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    .JoDeErrorContent {
+        padding: 2rem 1.5rem;
+    }
+
+    .JoDeErrorActions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .JoDeButtonPrimary,
+    .JoDeButtonSecondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .JoDeHeaderContainer {
+        padding: 0 0.75rem;
+    }
+
+    .JoDeContainer {
+        padding: 1rem 0.75rem;
+    }
+
+    .JoDeJobHeaderContent {
+        padding: 1.5rem 0;
+    }
+
+    .JoDeContentSection {
+        padding: 1.25rem 0.875rem;
+    }
+
+    .JoDeSidebarCard {
+        padding: 1.25rem;
+    }
+
+    .JoDeJobTitle {
+        font-size: 1.375rem;
+        line-height: 1.3;
+    }
+
+    .JoDeSalaryDisplay {
+        font-size: 1.125rem;
+    }
+
+    .JoDeSectionHeader h2 {
+        font-size: 1.125rem;
+    }
+
+    .JoDeApplicationMethod {
+        padding: 1rem;
+    }
+
+    .JoDeRelatedJobCard {
+        padding: 1rem;
+    }
+
+    .JoDeRelatedJobHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .JoDeMetaItem {
+        font-size: 0.75rem;
+    }
+
+    .JoDeLoadingContent h3 {
+        font-size: 1.25rem;
+    }
+
+    .JoDeErrorContent h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-blue: #3b82f6;
+        --primary-blue-hover: #2563eb;
+        --primary-blue-light: #1e293b;
+        --secondary-gray: #94a3b8;
+        --border-color: #334155;
+        --bg-gray: #0f172a;
+        --success-green: #22c55e;
+        --warning-orange: #f59e0b;
+        --error-red: #ef4444;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --white: #1e293b;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+
+    .JoDeWrapper {
+        background: linear-gradient(135deg, var(--bg-gray) 0%, #020617 100%);
+    }
+
+    .JoDeCompanyLogo,
+    .JoDeCompanyAvatar {
+        background: linear-gradient(135deg, #334155 0%, #475569 100%);
+        border-color: #475569;
+        color: #cbd5e1;
+    }
+
+    .JoDeSkillTag {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: #60a5fa;
+        border-color: #475569;
+    }
+
+    .JoDeSkillTag:hover {
+        background: linear-gradient(135deg, #334155 0%, #475569 100%);
+        border-color: var(--primary-blue);
+    }
+
+    .JoDeBenefitCard {
+        background: #334155;
+        border-color: #475569;
+    }
+
+    .JoDeBenefitCard:hover {
+        background: #475569;
+        border-color: var(--success-green);
+    }
+
+    .JoDeRelatedJobCard {
+        background: #334155;
+        border-color: #475569;
+    }
+
+    .JoDeRelatedJobCard:hover {
+        background: #475569;
+        border-color: var(--primary-blue);
+    }
+
+    .JoDeRequirementItem {
+        background: #334155;
+        border-color: var(--success-green); /* This was border-left, now border-color */
+    }
+
+    .JoDeEmptyState {
+        color: #64748b;
+    }
+
+    .JoDeApplicationMethod {
+        background: #334155;
+        border-color: #475569;
+    }
+
+    .JoDeApplicationMethod.primary {
+        border-color: var(--primary-blue);
+    }
+
+    .JoDeShareMenu {
+        background: #334155;
+        border-color: #475569;
+    }
+
+    .JoDeShareOption:hover {
+        background: #475569;
+    }
+
+    .JoDeBenefitsSection {
+        background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+        border-color: #059669;
+    }
+
+    .JoDeApplicationSection {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        border-color: #475569;
+    }
+
+    .JoDeStatsCard {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        border-color: #475569;
+    }
+
+    .JoDeDeadlineAlert.info {
+        background: #1e293b;
+        border-color: var(--primary-blue);
+    }
+
+    .JoDeDeadlineAlert.warning {
+        background: #451a03;
+        border-color: var(--warning-orange);
+    }
+
+    .JoDeDeadlineAlert.urgent {
+        background: #450a0a;
+        border-color: var(--error-red);
+    }
+}
+
+/* High Contrast Mode */
+@media (forced-colors: active) {
+    .JoDeContentSection,
+    .JoDeSidebarCard,
+    .JoDeRelatedJobCard,
+    .JoDeBenefitCard,
+    .JoDeSkillTag {
+        border: 2px solid ButtonText;
+    }
+
+    .JoDeBadge {
+        border: 1px solid ButtonText;
+        background: ButtonFace;
+        color: ButtonText;
+    }
+
+    .JoDeApplyButton,
+    .JoDeButtonPrimary,
+    .JoDeButtonSecondary {
+        border: 2px solid ButtonText;
+    }
+
+    .JoDeIconButton {
+        border: 2px solid ButtonText;
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .JoDeApplyButton:hover,
+    .JoDeContentSection:hover,
+    .JoDeSidebarCard:hover,
+    .JoDeRelatedJobCard:hover,
+    .JoDeSkillTag:hover,
+    .JoDeBenefitCard:hover {
+        transform: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .JoDeWrapper {
+        background: white;
+        color: black;
+    }
+
+    .JoDeHeaderNavigation,
+    .JoDeActionButtons,
+    .JoDeShareDropdown,
+    .JoDeDeadlineAlert {
+        display: none;
+    }
+
+    .JoDeContent {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .JoDeContentSection,
+    .JoDeSidebarCard {
+        box-shadow: none;
+        border: 1px solid #000;
+        break-inside: avoid;
+    }
+
+    .JoDeJobTitle {
+        font-size: 1.5rem;
+    }
+
+    .JoDeBadge {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+        border: 1px solid #000;
+    }
+
+    .JoDeApplicationLink {
+        color: #000;
+        text-decoration: underline;
+    }
+}
+
+/* Focus Styles for Accessibility */
+.JoDeBackButton:focus,
+.JoDeIconButton:focus,
+.JoDeApplyButton:focus,
+.JoDeButtonPrimary:focus,
+.JoDeButtonSecondary:focus,
+.JoDeShareOption:focus,
+.JoDeApplicationLink:focus,
+.JoDeViewCompanyLink:focus,
+.JoDeRelatedJobCard:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* Keyboard Navigation */
+.JoDeRelatedJobCard {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.JoDeRelatedJobCard:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: -2px;
+}
+
+/* Loading State Improvements */
+.JoDeLoadingContainer {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    margin: 2rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+/* Error State Improvements */
+.JoDeErrorContainer {
+    margin: 2rem;
+}
+
+/* Utility Classes */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-balance {
+    text-wrap: balance;
+}
+
+/* Performance Optimizations */
+.JoDeContentSection,
+.JoDeSidebarCard {
+    contain: layout;
+}
+
+.JoDeSkillTag,
+.JoDeBenefitCard,
+.JoDeRelatedJobCard {
+    contain: layout style;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

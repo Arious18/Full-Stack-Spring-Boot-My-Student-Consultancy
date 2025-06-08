@@ -13,7 +13,7 @@ function FieldDetail() {
         const fetchField = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`https://deneme5-g63n.onrender.com/fields/${id}`);
+                const response = await fetch(`http://localhost:8080/fields/${id}`);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch field: ${response.status}`);
                 }
@@ -30,38 +30,38 @@ function FieldDetail() {
         fetchField();
     }, [id]);
 
-    if (loading) return <div className="cgr-loading">Loading...</div>;
-    if (error) return <div className="cgr-error">{error}</div>;
-    if (!field) return <div className="cgr-error">Field not found</div>;
+    if (loading) return <div className="FaDe-loading">Loading...</div>;
+    if (error) return <div className="FaDe-error">{error}</div>;
+    if (!field) return <div className="FaDe-error">Field not found</div>;
 
     return (
-        <div className="cgr-field-detail-container">
-            <div className="cgr-field-detail-card">
-                <div className="cgr-header">
-                    <h1 className="cgr-title">{field.name}</h1>
-                    <p className="cgr-subtitle">Field Details</p>
+        <div className="FaDe-field-detail-container">
+            <div className="FaDe-field-detail-card">
+                <div className="FaDe-header">
+                    <h1 className="FaDe-title">{field.name}</h1>
+                    <p className="FaDe-subtitle">Field Details</p>
                 </div>
-                <div className="cgr-image-container">
+                <div className="FaDe-image-container">
                     <img
                         src={field.imageUrl || 'https://pub-cab830fe342c4f9480be11e8b3347409.r2.dev/my-data/error.jpeg'}
                         alt={field.name}
-                        className="cgr-image"
+                        className="FaDe-image"
                         onError={(e) => { e.target.src = 'https://pub-cab830fe342c4f9480be11e8b3347409.r2.dev/my-data/error.jpeg'; }}
                     />
                 </div>
-                <div className="cgr-content">
-                    <p className="cgr-description">
+                <div className="FaDe-content">
+                    <p className="FaDe-description">
                         {field.description || 'No description available'}
                     </p>
-                    <div className="cgr-button-group">
+                    <div className="FaDe-button-group">
                         <button
-                            className="cgr-button"
+                            className="FaDe-button"
                             onClick={() => navigate('/apply')}
                         >
                             Apply Now
                         </button>
                         <button
-                            className="cgr-button"
+                            className="FaDe-button"
                             onClick={() => navigate(`/fields/${field.facultyId}`)}
                         >
                             Back to Fields
