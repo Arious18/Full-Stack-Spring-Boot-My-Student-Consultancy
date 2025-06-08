@@ -18,9 +18,9 @@ public class AwsConfig {
     @Primary
     public S3Client s3Client() {
         return S3Client.builder()
-                .endpointOverride(URI.create("https://54eb6ae1a1a84e1cd954ea58de90762d.r2.cloudflarestorage.com/my-data"))
+                .endpointOverride(URI.create(" YOU CLOUDFLARE R2 DATABSE"))
                 .credentialsProvider(StaticCredentialsProvider.create(
-                        AwsBasicCredentials.create("6c854d195b7ba08865c3f93f03e1b702", "eda2fad8ef000be7fed7c14be2021e74d9147488b846dffc4adfbf38b29a7907")))
+                        AwsBasicCredentials.create("ACCESS KEY", "SECRET KEY ")))
                 .region(Region.of("auto"))
                 .build();
     }
